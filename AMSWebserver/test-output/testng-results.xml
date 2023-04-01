@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+  <reporter-output>
+    <line>
+      <![CDATA[launching browser successful=====]]>
+    </line>
+    <line>
+      <![CDATA[login successful]]>
+    </line>
+    <line>
+      <![CDATA[form parameter added successfully]]>
+    </line>
+    <line>
+      <![CDATA[logout successful]]>
+    </line>
+    <line>
+      <![CDATA[logout successful]]>
+    </line>
+  </reporter-output>
+  <suite started-at="2023-04-02T02:05:51 IST" name="Default suite" finished-at="2023-04-02T02:06:58 IST" duration-ms="67058">
+    <groups>
+    </groups>
+    <test started-at="2023-04-02T02:05:51 IST" name="Default test" finished-at="2023-04-02T02:06:58 IST" duration-ms="67058">
+      <class name="loginTest.loginTest">
+        <test-method is-config="true" signature="launchBrowser()[pri:0, instance:loginTest.loginTest@1e0b4072]" started-at="2023-04-02T02:05:51 IST" name="launchBrowser" finished-at="2023-04-02T02:05:59 IST" duration-ms="7902" status="PASS">
+          <reporter-output>
+            <line>
+              <![CDATA[launching browser successful=====]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- launchBrowser -->
+        <test-method is-config="true" signature="login()[pri:0, instance:loginTest.loginTest@1e0b4072]" started-at="2023-04-02T02:05:59 IST" name="login" finished-at="2023-04-02T02:05:59 IST" duration-ms="601" status="PASS">
+          <reporter-output>
+            <line>
+              <![CDATA[login successful]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- login -->
+        <test-method signature="createFormParameter()[pri:0, instance:loginTest.loginTest@1e0b4072]" started-at="2023-04-02T02:05:59 IST" name="createFormParameter" finished-at="2023-04-02T02:06:56 IST" duration-ms="56984" status="PASS">
+          <reporter-output>
+            <line>
+              <![CDATA[form parameter added successfully]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- createFormParameter -->
+        <test-method is-config="true" signature="logout()[pri:0, instance:loginTest.loginTest@1e0b4072]" started-at="2023-04-02T02:06:56 IST" name="logout" finished-at="2023-04-02T02:06:58 IST" duration-ms="1223" status="PASS">
+          <reporter-output>
+            <line>
+              <![CDATA[logout successful]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- logout -->
+        <test-method is-config="true" signature="closebrowser()[pri:0, instance:loginTest.loginTest@1e0b4072]" started-at="2023-04-02T02:06:58 IST" name="closebrowser" finished-at="2023-04-02T02:06:58 IST" duration-ms="272" status="PASS">
+          <reporter-output>
+            <line>
+              <![CDATA[logout successful]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- closebrowser -->
+      </class> <!-- loginTest.loginTest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
