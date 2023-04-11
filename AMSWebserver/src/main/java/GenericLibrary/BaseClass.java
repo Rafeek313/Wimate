@@ -23,7 +23,7 @@ public class BaseClass {
 	public WebDriverUtility wlib = new WebDriverUtility();
 	public WebDriver driver = null;
 	public static WebDriver sdriver;
-	LoginPage loginpage = new LoginPage(driver);
+	LoginPage loginpage;
 	HomePage homePage = new HomePage(driver);
 
 	@BeforeClass
@@ -75,7 +75,7 @@ public class BaseClass {
 	@AfterClass
 	public void closebrowser() throws InterruptedException {
 		sdriver.quit();
-		Reporter.log("logout successful", true);
+		Reporter.log("cosed browser successfully", true);
 	}
 
 }

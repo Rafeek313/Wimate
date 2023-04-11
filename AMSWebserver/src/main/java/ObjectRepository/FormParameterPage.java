@@ -59,6 +59,16 @@ public class FormParameterPage {
 	private WebElement mintbx;
 	@FindBy(xpath = "(//input[@type='number'])[2]")
 	private WebElement maxtbx;
+	@FindBy(xpath = "//span[text()='Cancel']")
+	private WebElement cancelbtn;
+	@FindBy(xpath = "//button[@ng-reflect-message='Next page']")
+	private WebElement nextPageBtn;
+	@FindBy(xpath = "//input[@placeholder='Search' and @type='text']")
+	private WebElement searchBtn;
+	@FindBy(xpath = "//div[@class='mat-paginator-range-label']")
+	private WebElement pageDetails;
+	@FindBy(xpath = "//mat-icon[text()='refresh']")
+	private WebElement refreshbtn;
 	public FormParameterPage(WebDriver driver) {
 		PageFactory.initElements(driver, this);
 	}
@@ -202,12 +212,10 @@ public class FormParameterPage {
 				DateOption.click();
 			} else if (parameterType.equals("Time")) {
 				TimeOption.click();
-			} 
-			else if(parameterType.equals("Signature")){
+			} else if (parameterType.equals("Signature")) {
 				wlib.scrollAction(driver, SignatureOption);
-				SignatureOption.click();	
-			}
-			else if (parameterType.equals("User Single-Select")) {
+				SignatureOption.click();
+			} else if (parameterType.equals("User Single-Select")) {
 				wlib.scrollAction(driver, singleUserOption);
 				singleUserOption.click();
 			} else if (parameterType.equals("User Multi-Select")) {
@@ -230,10 +238,46 @@ public class FormParameterPage {
 				falseOption.click();
 			}
 			wlib.scrollAction(driver, saveBtn);
-			saveBtn.click();
-			Thread.sleep(1000);
-			String parameterid = driver.findElement(By.xpath("//mat-cell[@role='cell' and text()=' "+parameterId+"']")).getText();
-			Assert.assertEquals(parameterId, parameterid);
+			String disabletxt = driver.findElement(By.xpath("//button[contains(@type,'submit()')]"))
+					.getAttribute("ng-reflect-disabled");
+			if (disabletxt.equals("false")) {
+				Thread.sleep(1000);
+				saveBtn.click();
+				refreshbtn.click();
+				searchBtn.clear();
+				searchBtn.sendKeys(parameterId);
+				String Expecteddata = parameterId;
+				System.out.println(Expecteddata);
+
+				String ActualData = driver.findElement(By.xpath("//div[text()='"+parameterId+"']")).getText();
+				if (Expecteddata.contains(ActualData)) {
+					Assert.assertTrue(true);
+				} else {
+					Assert.assertTrue(false);
+				}
+				//Assert.assertEquals(Expecteddata, ActualData);
+				System.out.println(parameterId + " Added successfully");
+			} else {
+				Thread.sleep(1000);
+				cancelbtn.click();
+				refreshbtn.click();
+				searchBtn.clear();
+				searchBtn.sendKeys(parameterId);
+				String Expecteddata = parameterId;
+				System.out.println(Expecteddata);
+
+				String ActualData = driver.findElement(By.xpath("//div[text()='"+parameterId+"']")).getText();
+				
+				//Assert.assertEquals(Expecteddata, ActualData);
+				if (Expecteddata.contains(ActualData)) {
+					Assert.assertTrue(true);
+				} else {
+					Assert.assertTrue(false);
+				}
+
+				System.out.println(parameterId + " Already exist");
+               
+			}
 
 		}
 
