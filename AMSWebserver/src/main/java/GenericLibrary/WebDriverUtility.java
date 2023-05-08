@@ -304,5 +304,10 @@ public class WebDriverUtility {
 		js.executeScript("window.scrollBy(0," + y + ")", element);
 		// js.executeScript("argument[0].scrollIntoView()",element);
 	}
+	public void specificScrollAction(WebDriver driver,WebElement element)
+	{
+		Actions actions = new Actions(driver);
+		actions.moveToElement(element).clickAndHold().release().perform();
+	}
 
 }

@@ -7,9 +7,9 @@
         <methods>
           <include name="logout"/>
           <include name="launchBrowser"/>
-          <include name="createFormType"/>
           <include name="login"/>
           <include name="closebrowser"/>
+          <include name="addManufacture"/>
         </methods>
       </class> <!-- FormTest.FormTest -->
     </classes>

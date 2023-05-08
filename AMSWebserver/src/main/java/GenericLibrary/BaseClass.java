@@ -27,6 +27,11 @@ public class BaseClass {
 	HomePage homePage = new HomePage(driver);
 
 	@BeforeClass
+	/**
+	 * this method will launch the browser
+	 * @author rafeek
+	 * @throws Throwable
+	 */
 	public void launchBrowser() throws Throwable {
 		// read data from property file
 		String BROWSER = plib.readDataFromPropertyFile("browser");
@@ -54,6 +59,11 @@ public class BaseClass {
 	}
 
 	@BeforeMethod
+	/**
+	 * this method is used for loginto the application
+	 * @author rafeek
+	 * @throws IOException
+	 */
 	public void login() throws IOException {
 		wlib.waitForPageLoad(driver);
 		PropertyFileUtility pobj = new PropertyFileUtility();
@@ -66,6 +76,11 @@ public class BaseClass {
 	}
 
 	@AfterMethod
+	/**
+	 * this method is used for logout the application
+	 * @author rafeek
+	 * @throws InterruptedException
+	 */
 	public void logout() throws InterruptedException {
 		homePage = new HomePage(driver);
 		homePage.logout();
@@ -73,6 +88,11 @@ public class BaseClass {
 	}
 
 	@AfterClass
+/**
+ * this method will close the browser
+ * @author rafeek
+ * @throws InterruptedException
+ */
 	public void closebrowser() throws InterruptedException {
 		sdriver.quit();
 		Reporter.log("cosed browser successfully", true);
