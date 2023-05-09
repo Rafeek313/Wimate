@@ -32,11 +32,36 @@ public class HomePage {
 	private WebElement SubDepbtn;
 	@FindBy(xpath = "//a[text()=' Manufacturer ']")
 	private WebElement manufacturebtn;
+	@FindBy(xpath = "//a[text()=' Model ']")
+	private WebElement modelbtn;
+	@FindBy(xpath = "//a[text()=' Priority ']")
+	private WebElement prioritybtn;
+	@FindBy(xpath = "//a[text()=' Location Type ']")
+	private WebElement locationTypebtn;
+	@FindBy(xpath = "//a[text()=' Location ']")
+	private WebElement locationbtn;
 	@FindBy(xpath = "//a[text()=' Problem ']")
 	private WebElement Problembtn;
+
 	public HomePage(WebDriver driver) {
 		PageFactory.initElements(driver, this);
 
+	}
+
+	public WebDriverUtility getWlib() {
+		return wlib;
+	}
+
+	public WebElement getManufacturebtn() {
+		return manufacturebtn;
+	}
+
+	public WebElement getModelbtn() {
+		return modelbtn;
+	}
+
+	public WebElement getProblembtn() {
+		return Problembtn;
 	}
 
 	public WebElement getFormsbtn() {
@@ -61,6 +86,18 @@ public class HomePage {
 
 	public WebElement getLogoutbtn() {
 		return logoutbtn;
+	}
+
+	public WebElement getPrioritybtn() {
+		return prioritybtn;
+	}
+
+	public WebElement getLocationTypebtn() {
+		return locationTypebtn;
+	}
+
+	public WebElement getLocationbtn() {
+		return locationbtn;
 	}
 
 	public WebElement getConfigButton() {
@@ -103,23 +140,74 @@ public class HomePage {
 	public void clickonDepartmentButton() {
 		DepBtn.click();
 	}
-/**
- * this method is used for click on subdepartment option and action class used for scroll to the specific element
- * @param driver
- * @throws InterruptedException
- */
-	public void clickonSubDepartmentButton(WebDriver driver) throws InterruptedException {
-		wlib.maximizeWindow(driver);
-		wlib.specificScrollAction(driver, SubDepbtn); 
-	
-	}
-	/** this method is used for click on manufacture option and action class used for scroll to the specific element
+
+	/**
+	 * this method is used for click on subdepartment option and action class used  for scroll to the specific element 
 	 * @param driver
 	 * @throws InterruptedException
+	 * @author rafeek
 	 */
-		public void clickonManufactureButton(WebDriver driver) throws InterruptedException {
-			wlib.maximizeWindow(driver);
-			wlib.specificScrollAction(driver, manufacturebtn);
-			
-		}
+	public void clickonSubDepartmentButton(WebDriver driver) throws InterruptedException {
+		wlib.maximizeWindow(driver);
+		wlib.specificScrollAction(driver, SubDepbtn);
+
+	}
+
+	/**
+	 * this method is used for click on manufacture option and action class used for scroll to the specific element 
+	 * @param driver
+	 * @throws InterruptedException
+	 * @author rafeek
+	 */
+	public void clickonManufactureButton(WebDriver driver) throws InterruptedException {
+		wlib.maximizeWindow(driver);
+		wlib.specificScrollAction(driver, manufacturebtn);
+
+	}
+
+	/**
+	 * this method is used for click on Model option and action class used for scroll to the specific element
+	 * @param driver
+	 * @throws InterruptedException
+	 * @author rafeek
+	 */
+	public void clickonModelButton(WebDriver driver) throws InterruptedException {
+		wlib.maximizeWindow(driver);
+		wlib.specificScrollAction(driver, modelbtn);
+
+	}
+	/**
+	 * this method is used for click on priority option and action class used for scroll to the specific element
+	 * @param driver
+	 * @throws InterruptedException
+	 * @author rafeek
+	 */
+	public void clickonPriorityButton(WebDriver driver) throws InterruptedException {
+		wlib.maximizeWindow(driver);
+		wlib.specificScrollAction(driver, prioritybtn);
+
+	}
+	/**
+	 * this method is used for click on location option and action class used for scroll to the specific element
+	 * @param driver
+	 * @throws InterruptedException
+	 * @author rafeek
+	 */
+	public void clickonLocationTypeButton(WebDriver driver) throws InterruptedException {
+		wlib.maximizeWindow(driver);
+		wlib.specificScrollAction(driver, locationTypebtn);
+
+	}
+	/**
+	 * this method is used for click on location option and action class used for scroll to the specific element
+	 * @param driver
+	 * @throws InterruptedException
+	 * @author rafeek
+	 */
+	public void clickonLocationButton(WebDriver driver) throws InterruptedException {
+		wlib.maximizeWindow(driver);
+		wlib.specificScrollAction(driver, locationbtn);
+
+	}
+	
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="4" total="5" passed="0" failed="1" skipped="0">
+<testng-results ignored="8" total="9" passed="1" failed="0" skipped="0">
   <reporter-output>
     <line>
       <![CDATA[launching browser successful=====]]>
@@ -8,47 +8,86 @@
       <![CDATA[login successful]]>
     </line>
     <line>
-      <![CDATA[logout successful]]>
-    </line>
-    <line>
-      <![CDATA[cosed browser successfully]]>
+      <![CDATA[model added successfully]]>
     </line>
   </reporter-output>
-  <suite started-at="2023-05-08T18:26:41 IST" name="Default suite" finished-at="2023-05-08T18:27:02 IST" duration-ms="20995">
+  <suite started-at="2023-05-09T17:08:11 IST" name="Default suite" finished-at="2023-05-09T17:10:06 IST" duration-ms="115127">
     <groups>
     </groups>
-    <test started-at="2023-05-08T18:26:41 IST" name="Default test" finished-at="2023-05-08T18:27:02 IST" duration-ms="20995">
+    <test started-at="2023-05-09T17:08:11 IST" name="Default test" finished-at="2023-05-09T17:10:06 IST" duration-ms="115127">
       <class name="FormTest.FormTest">
-        <test-method is-config="true" signature="launchBrowser()[pri:0, instance:FormTest.FormTest@e350b40]" started-at="2023-05-08T18:26:41 IST" name="launchBrowser" finished-at="2023-05-08T18:26:48 IST" duration-ms="7431" status="PASS">
+        <test-method is-config="true" signature="launchBrowser()[pri:0, instance:FormTest.FormTest@1c7696c6]" started-at="2023-05-09T17:08:11 IST" name="launchBrowser" finished-at="2023-05-09T17:08:19 IST" duration-ms="7735" status="PASS">
           <reporter-output>
             <line>
               <![CDATA[launching browser successful=====]]>
             </line>
           </reporter-output>
         </test-method> <!-- launchBrowser -->
-        <test-method is-config="true" signature="login()[pri:0, instance:FormTest.FormTest@e350b40]" started-at="2023-05-08T18:26:48 IST" name="login" finished-at="2023-05-08T18:26:49 IST" duration-ms="640" status="PASS">
+        <test-method is-config="true" signature="login()[pri:0, instance:FormTest.FormTest@1c7696c6]" started-at="2023-05-09T17:08:19 IST" name="login" finished-at="2023-05-09T17:08:20 IST" duration-ms="673" status="PASS">
           <reporter-output>
             <line>
               <![CDATA[login successful]]>
             </line>
           </reporter-output>
         </test-method> <!-- login -->
-        <test-method signature="addManufacture()[pri:0, instance:FormTest.FormTest@e350b40]" started-at="2023-05-08T18:26:49 IST" name="addManufacture" finished-at="2023-05-08T18:27:00 IST" duration-ms="11496" status="FAIL">
-          <exception class="java.lang.NullPointerException">
+        <test-method signature="addLocation()[pri:0, instance:FormTest.FormTest@1c7696c6]" started-at="2023-05-09T17:08:20 IST" name="addLocation" finished-at="2023-05-09T17:10:05 IST" duration-ms="105504" status="PASS">
+          <reporter-output>
+            <line>
+              <![CDATA[model added successfully]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- addLocation -->
+        <test-method is-config="true" signature="logout()[pri:0, instance:FormTest.FormTest@1c7696c6]" started-at="2023-05-09T17:10:05 IST" name="logout" finished-at="2023-05-09T17:10:06 IST" duration-ms="1124" status="FAIL">
+          <exception class="org.openqa.selenium.ElementClickInterceptedException">
             <message>
-              <![CDATA[Cannot invoke "org.apache.poi.ss.usermodel.Row.getCell(int)" because the return value of "org.apache.poi.ss.usermodel.Sheet.getRow(int)" is null]]>
+              <![CDATA[element click intercepted: Element <img _ngcontent-wdu-c204="" width="32" height="32" alt="User" class="user_img" src=""> is not clickable at point (1398, 29). Other element would receive the click: <div class="cdk-overlay-backdrop cdk-overlay-dark-backdrop cdk-overlay-backdrop-showing"></div>
+  (Session info: chrome=103.0.5060.134)
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'Rafeeks-MacBook-Air.local', ip: 'fe80:0:0:0:36:a477:e947:4491%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.12.6', java.version: '17.0.5'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 103.0.5060.134, chrome: {chromedriverVersion: 103.0.5060.134 (8ec6fce403b..., userDataDir: /var/folders/0_/c8gnyk8174b...}, goog:chromeOptions: {debuggerAddress: localhost:54189}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: MAC, platformName: MAC, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 75c1cfa23c3c792b7e618faf2d907671]]>
             </message>
             <full-stacktrace>
-              <![CDATA[java.lang.NullPointerException: Cannot invoke "org.apache.poi.ss.usermodel.Row.getCell(int)" because the return value of "org.apache.poi.ss.usermodel.Sheet.getRow(int)" is null
-at GenericLibrary.ExcelFileUtility.readDataFromExcel(ExcelFileUtility.java:29)
-at ObjectRepository.ManufacturePage.addManufacture(ManufacturePage.java:63)
-at FormTest.FormTest.addManufacture(FormTest.java:97)
+              <![CDATA[org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element <img _ngcontent-wdu-c204="" width="32" height="32" alt="User" class="user_img" src=""> is not clickable at point (1398, 29). Other element would receive the click: <div class="cdk-overlay-backdrop cdk-overlay-dark-backdrop cdk-overlay-backdrop-showing"></div>
+  (Session info: chrome=103.0.5060.134)
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'Rafeeks-MacBook-Air.local', ip: 'fe80:0:0:0:36:a477:e947:4491%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.12.6', java.version: '17.0.5'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 103.0.5060.134, chrome: {chromedriverVersion: 103.0.5060.134 (8ec6fce403b..., userDataDir: /var/folders/0_/c8gnyk8174b...}, goog:chromeOptions: {debuggerAddress: localhost:54189}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: MAC, platformName: MAC, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 75c1cfa23c3c792b7e618faf2d907671
+at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:285)
+at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:84)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:51)
+at jdk.proxy2/jdk.proxy2.$Proxy13.click(Unknown Source)
+at ObjectRepository.HomePage.logout(HomePage.java:131)
+at GenericLibrary.BaseClass.logout(BaseClass.java:86)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
 at java.base/java.lang.reflect.Method.invoke(Method.java:568)
 at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
-at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
+at org.testng.internal.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:62)
+at org.testng.internal.ConfigInvoker.invokeConfigurationMethod(ConfigInvoker.java:385)
+at org.testng.internal.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:321)
+at org.testng.internal.TestInvoker.runConfigMethods(TestInvoker.java:700)
+at org.testng.internal.TestInvoker.runAfterGroupsConfigurations(TestInvoker.java:676)
+at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:660)
 at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
 at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
 at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
@@ -73,22 +112,12 @@ at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
 ]]>
             </full-stacktrace>
-          </exception> <!-- java.lang.NullPointerException -->
+          </exception> <!-- org.openqa.selenium.ElementClickInterceptedException -->
           <reporter-output>
-          </reporter-output>
-        </test-method> <!-- addManufacture -->
-        <test-method is-config="true" signature="logout()[pri:0, instance:FormTest.FormTest@e350b40]" started-at="2023-05-08T18:27:00 IST" name="logout" finished-at="2023-05-08T18:27:02 IST" duration-ms="1220" status="PASS">
-          <reporter-output>
-            <line>
-              <![CDATA[logout successful]]>
-            </line>
           </reporter-output>
         </test-method> <!-- logout -->
-        <test-method is-config="true" signature="closebrowser()[pri:0, instance:FormTest.FormTest@e350b40]" started-at="2023-05-08T18:27:02 IST" name="closebrowser" finished-at="2023-05-08T18:27:02 IST" duration-ms="157" status="PASS">
+        <test-method is-config="true" signature="closebrowser()[pri:0, instance:FormTest.FormTest@1c7696c6]" started-at="2023-05-09T17:10:06 IST" name="closebrowser" finished-at="1970-01-01T05:30:00 IST" duration-ms="-1683632406734" status="SKIP">
           <reporter-output>
-            <line>
-              <![CDATA[cosed browser successfully]]>
-            </line>
           </reporter-output>
         </test-method> <!-- closebrowser -->
       </class> <!-- FormTest.FormTest -->
