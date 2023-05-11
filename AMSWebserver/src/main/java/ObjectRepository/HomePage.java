@@ -30,6 +30,8 @@ public class HomePage {
 	private WebElement DepBtn;
 	@FindBy(xpath = "//a[text()=' Sub Department ']")
 	private WebElement SubDepbtn;
+	@FindBy(xpath = "//a[text()=' Asset Map ']")
+	private WebElement assetMapbtn;
 	@FindBy(xpath = "//a[text()=' Manufacturer ']")
 	private WebElement manufacturebtn;
 	@FindBy(xpath = "//a[text()=' Model ']")
@@ -42,6 +44,8 @@ public class HomePage {
 	private WebElement locationbtn;
 	@FindBy(xpath = "//a[text()=' Problem ']")
 	private WebElement Problembtn;
+	@FindBy(xpath = "//a[text()=' User ']")
+	private WebElement userbtn;
 
 	public HomePage(WebDriver driver) {
 		PageFactory.initElements(driver, this);
@@ -110,6 +114,10 @@ public class HomePage {
 
 	public WebElement getSubDepbtn() {
 		return SubDepbtn;
+	}
+
+	public WebElement getAssetMapbtn() {
+		return assetMapbtn;
 	}
 
 	public void clickonFormParameter() throws InterruptedException {
@@ -208,6 +216,27 @@ public class HomePage {
 		wlib.maximizeWindow(driver);
 		wlib.specificScrollAction(driver, locationbtn);
 
+	}
+	/**
+	 * this method is used for click on asset map option and action class used for scroll to the specific element
+	 * @param driver
+	 * @throws InterruptedException
+	 * @author rafeek
+	 */
+	public void clickonAssetMapButton(WebDriver driver) throws InterruptedException {
+		wlib.maximizeWindow(driver);
+		wlib.specificScrollAction(driver, assetMapbtn);
+
+	}
+	/**
+	 * this method is used for click on user option and action class used for scroll to the specific element
+	 * @param driver
+	 * @throws InterruptedException
+	 * @author rafeek
+	 */
+	public void clickonUserButton(WebDriver driver) throws InterruptedException {
+		wlib.maximizeWindow(driver);
+		wlib.specificScrollAction(driver, userbtn);
 	}
 	
 }

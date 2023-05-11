@@ -12,9 +12,11 @@ import java.util.concurrent.TimeUnit;
 import com.google.common.*;
 import com.google.common.io.Files;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.OutputType;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -42,21 +44,41 @@ public class WebDriverUtility {
 	public void fullscreenWindow(WebDriver driver) {
 		driver.manage().window().fullscreen();
 	}
-
 	/**
 	 * this method will wait 10 seconds for the page loading
+	 * @param driver
+	 */
+	public void waitForPageLoadTimeOut(WebDriver driver) {
+		driver.manage().timeouts().pageLoadTimeout(20,TimeUnit.SECONDS );
+	}
+	/**
+	 * this method will wait 10 seconds for the find elements
 	 * 
 	 * @param driver
 	 */
 	public void waitForPageLoad(WebDriver driver) {
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 	}
-
+	/**
+	 * this method will wait until element visible in the Dom 
+	 * 
+	 * @param driver
+	 */
 	public static void waitForElementToBeClickable(WebDriver driver, WebElement element) {
-		WebDriverWait wait = new WebDriverWait(driver, 5);
+		WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.visibilityOf(element));
 	}
+	/**
+	 * this method will wait until element presence in the Dom 
+	 * 
+	 * @param driver
+	 */
+	public static void waitForElementToBePresent(WebDriver driver, WebElement element) {
+		new WebDriverWait(driver, 10).ignoring(StaleElementReferenceException.class )
+		.until(ExpectedConditions.elementToBeClickable(element));
 
+
+	}
 	/**
 	 * this method will select data from dropdown using index
 	 * 

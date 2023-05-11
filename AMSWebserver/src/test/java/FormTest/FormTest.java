@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 import GenericLibrary.BaseClass;
 import GenericLibrary.ExcelFileUtility;
 import GenericLibrary.PropertyFileUtility;
+import ObjectRepository.AssetMapPage;
 import ObjectRepository.DepartmentPage;
 import ObjectRepository.FormParameterPage;
 import ObjectRepository.FormTypePage;
@@ -20,6 +21,7 @@ import ObjectRepository.ManufacturePage;
 import ObjectRepository.ModelPage;
 import ObjectRepository.PriorityPage;
 import ObjectRepository.SubDepartmentPage;
+import ObjectRepository.UserPage;
 
 public class FormTest extends BaseClass {
 	LoginPage loginpage;
@@ -33,6 +35,8 @@ public class FormTest extends BaseClass {
 	PriorityPage prioritypage;
 	LocationTypePage locationTypePage;
 	LocationPage locationpage;
+	AssetMapPage assetMapPage;
+	UserPage userPage;
 	ExcelFileUtility elib = new ExcelFileUtility();
 
 	/**
@@ -175,6 +179,36 @@ public class FormTest extends BaseClass {
 		locationpage = new LocationPage(driver);
 		locationpage.addLocation(driver);
 		Reporter.log("model added successfully");
+
+	}
+	/**
+	 * this method is used for adding asset map for ticket configuration 
+	 * @author rafeek
+	 */
+	@Test
+	public void addAssetMap() throws IOException, Throwable {
+		wlib.waitForPageLoad(driver);
+		homePage = new HomePage(driver);
+		homePage.clickonConfigButton();
+		homePage.clickonAssetMapButton(driver);
+		assetMapPage = new AssetMapPage(driver);
+		assetMapPage.addAssetMap(driver);
+		Reporter.log("asset map added successfully");
+
+	}
+	/**
+	 * this method is used for adding user for ticket configuration 
+	 * @author rafeek
+	 */
+	@Test
+	public void addUser() throws IOException, Throwable {
+		wlib.waitForPageLoad(driver);
+		homePage = new HomePage(driver);
+		homePage.clickonConfigButton();
+		homePage.clickonUserButton(driver);
+		userPage = new UserPage(driver);
+		userPage.addUser(driver);
+		Reporter.log(" new user added successfully");
 
 	}
 }
