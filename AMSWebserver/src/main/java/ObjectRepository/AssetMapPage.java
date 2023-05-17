@@ -27,10 +27,14 @@ public class AssetMapPage {
 	private WebElement descriptionTbx;
 	@FindBy(xpath = "//input[@ng-reflect-name='Metadata']")
 	private WebElement MetaDataTbx;
-	@FindBy(xpath = "//span[text()='Save']")
-	private WebElement saveBtn;
 	@FindBy(xpath = "//span[text()='Cancel']")
 	private WebElement cancelBtn;
+	@FindBy(xpath = "//span[text()='This AssetID already exists']")
+	private WebElement errorMsg;
+	@FindBy(xpath = "(//button[@ng-reflect-disabled='false'])[2]")
+	private WebElement saveButton;
+	@FindBy(xpath = "//span[text()='Save']")
+	private WebElement saveBtn;
 
 	public AssetMapPage(WebDriver driver) {
 		PageFactory.initElements(driver, this);
@@ -68,6 +72,14 @@ public class AssetMapPage {
 		return saveBtn;
 	}
 
+	public WebElement getCancelBtn() {
+		return cancelBtn;
+	}
+
+	public WebElement getErrorMsg() {
+		return errorMsg;
+	}
+
 	public void addAssetMap(WebDriver driver) throws IOException, Throwable {
 		wlib.waitForPageLoad(driver);
 		int count = elib.getRowCount("AssetMap");
@@ -89,22 +101,30 @@ public class AssetMapPage {
 			// click on specific problem id web element
 			problemWe.click();
 			Thread.sleep(2000);
-			//action class will close the hidden popup after selecting problems
-			 Actions actions=new Actions(driver);
-			 actions.moveToElement(saveBtn).doubleClick(saveBtn).build().perform();
-				Thread.sleep(2000);
-           //sending value to the description textbox
+			// action class will close the hidden popup after selecting problems
+			Actions actions = new Actions(driver);
+			actions.moveToElement(saveBtn).doubleClick(saveBtn).build().perform();
+			Thread.sleep(2000);
+			// sending value to the description textbox
 			descriptionTbx.sendKeys(description);
-	           //sending value to the metadata textbox
+			// sending value to the metadata textbox
 			MetaDataTbx.sendKeys(metadata);
-			//click on save button
-			saveBtn.click();
-			//validation of newly added asset map by using assertion
+			// click on save button
+			try {
+				saveButton.click();
+			} catch (Exception e) {
+				String duplicateID = errorMsg.getText();
+				wlib.scrollAction(driver, cancelBtn);
+				cancelBtn.click();
+				System.out.println(assettypeid + " " + duplicateID);
+
+			}
+			// validation of newly added asset map by using assertion
 			String ActualId = driver.findElement(By.xpath(
 					"//mat-cell[@class='mat-cell cdk-cell cdk-column-assetmap_id mat-column-assetmap_id ng-star-inserted' and text()='"
 							+ " " + "" + assettypeid + "']"))
 					.getText();
-			System.out.println(ActualId);
+
 			Assert.assertEquals(assettypeid, ActualId);
 		}
 	}

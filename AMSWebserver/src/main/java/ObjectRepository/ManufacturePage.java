@@ -23,8 +23,12 @@ public class ManufacturePage {
 	private WebElement descriptionTbx;
 	@FindBy (xpath="//input[@ng-reflect-name='Metadata']")
 	private WebElement MetaDataTbx;
-	@FindBy (xpath="//span[text()='Save']")
-	private WebElement saveBtn;
+	@FindBy(xpath = "//span[text()='Cancel']")
+	private WebElement cancelBtn;
+	@FindBy(xpath = "//span[text()='This ManufacturerID already exists']")
+	private WebElement errorMsg;
+	@FindBy(xpath = "(//button[@ng-reflect-disabled='false'])[2]")
+	private WebElement saveBtn ;
 	public ManufacturePage(WebDriver driver) {
 		PageFactory.initElements(driver, this);
 	}
@@ -50,6 +54,13 @@ public class ManufacturePage {
 	public WebElement getSaveBtn() {
 		return saveBtn;
 	}
+	
+	public WebElement getCancelBtn() {
+		return cancelBtn;
+	}
+	public WebElement getErrorMsg() {
+		return errorMsg;
+	}
 	/** 
 	 * this method is used for Adding manufacture in the ticket configuration
 	 * @author rafeek
@@ -59,20 +70,29 @@ public class ManufacturePage {
 	public void addManufacture(WebDriver driver) throws IOException, Throwable {
 		wlib.waitForPageLoad(driver);
 		int count = elib.getRowCount("Manufacture");
+		System.out.println(count);
 		for(int i=1;i<=count;i++) {
 		String manufactureid = elib.readDataFromExcel("Manufacture", i, 0);
 		String description = elib.readDataFromExcel("Manufacture", i, 1);
 		String metadata = elib.readDataFromExcel("Manufacture", i, 2);
-		System.out.println(manufactureid);
 		Thread.sleep(1000);
 		AddBtn.click();
-		Thread.sleep(1000);
+		Thread.sleep(500);
 		manufactureIdTbx.sendKeys(manufactureid);
 		descriptionTbx.sendKeys(description);
 		MetaDataTbx.sendKeys(metadata);
-		saveBtn.click();
+		try {
+			saveBtn.click();
+			}
+			catch(Exception e)
+			{ 
+				String duplicateID = errorMsg.getText();
+				wlib.scrollAction(driver,cancelBtn);
+				cancelBtn.click();
+				System.out.println(manufactureid+" "+duplicateID);
+				
+		    }
 		String ActualId = driver.findElement(By.xpath("//mat-cell[@class='mat-cell cdk-cell cdk-column-manufacturer_id mat-column-manufacturer_id ng-star-inserted' and text()='"+" "+""+manufactureid+"']")).getText();
-		System.out.println(ActualId);
 		Assert.assertEquals(manufactureid, ActualId);
 	}
 }

@@ -54,10 +54,12 @@ public class UserPage {
 	private WebElement passwordTbx;
 	@FindBy(xpath = "//input[@ng-reflect-name='client']")
 	private WebElement clientIdTbx;
-	@FindBy(xpath = "//span[text()='Save']")
-	private WebElement saveBtn;
 	@FindBy(xpath = "//span[text()='Cancel']")
 	private WebElement cancelBtn;
+	@FindAll({@FindBy(xpath = "//span[text()='This UserID already exists']"),@FindBy(xpath = "//span[text()='This Email ID already exists']")})
+	private WebElement errorMsg;
+	@FindBy(xpath = "(//button[@ng-reflect-disabled='false'])[2]")
+	private WebElement saveBtn ;
 	@FindAll({ @FindBy(xpath = "//span[text()=' Enable ']"),@FindBy(xpath="//mat-option[@ng-reflect-value='true']") })
 	private WebElement enableOption;
 	@FindAll({@FindBy(xpath = "//span[text()=' Disable ']"),@FindBy(xpath="//mat-option[@ng-reflect-value='false']") })
@@ -157,6 +159,30 @@ public class UserPage {
 
 	public WebElement getCancelBtn() {
 		return cancelBtn;
+	}
+
+	public WebElement getPasswordTbx() {
+		return passwordTbx;
+	}
+
+	public WebElement getErrorMsg() {
+		return errorMsg;
+	}
+
+	public WebElement getEnableOption() {
+		return enableOption;
+	}
+
+	public WebElement getDisableOption() {
+		return disableOption;
+	}
+
+	public WebElement getVisibleOption() {
+		return visibleOption;
+	}
+
+	public WebElement getInvisibleOption() {
+		return invisibleOption;
 	}
 
 	public void addUser(WebDriver driver) throws Throwable {
@@ -291,14 +317,34 @@ public class UserPage {
 			userTypeDrpDwn.click();
 			//dynamic xpath for selecting the user Type id
 			WebElement usertype = driver.findElement(By.xpath("//span[text()='"+" "+""+userType+""+" "+"']"));
-			Thread.sleep(1000);
-			System.out.println("hi"+usertype+"hello");
 			// scroll action to the specific element
 			//wlib.scrollAction(driver, usertype);
 			Thread.sleep(1000);
 			usertype.click();
 			//click on save button
-			saveBtn.click();
+			try {
+				saveBtn.click();
+				}
+				catch(Exception e)
+				{ 
+					String duplicateID = errorMsg.getText();
+					wlib.scrollAction(driver,cancelBtn);
+					cancelBtn.click();
+					System.out.println(userId+" "+duplicateID);
+				}
+					try{
+						String ActualId = driver.findElement(By.xpath(
+							"//mat-cell[@class='mat-cell cdk-cell cdk-column-user_id mat-column-user_id ng-star-inserted' and text()='"
+									+ " " + "" + userId + "']"))
+							.getText();
+						Assert.assertEquals(userId, ActualId);
+					}
+					catch(Exception e)
+					{
+						String ActualId=driver.findElement(By.xpath("//div[text()='"+emailID+"']")).getText();
+						Assert.assertEquals(emailID, ActualId);
+					}
+									    
 		}
 
 	}

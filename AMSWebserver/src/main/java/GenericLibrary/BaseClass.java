@@ -95,7 +95,7 @@ public class BaseClass {
  */
 	public void closebrowser() throws InterruptedException {
 		sdriver.quit();
-		Reporter.log("cosed browser successfully", true);
+		Reporter.log("closed browser successfully", true);
 	}
 
 }

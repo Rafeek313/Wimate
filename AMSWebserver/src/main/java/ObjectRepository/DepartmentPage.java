@@ -24,8 +24,12 @@ public class DepartmentPage {
 	private WebElement descriptionTbx;
 	@FindBy (xpath="//input[@ng-reflect-name='Metadata']")
 	private WebElement metadataTbx;
-	@FindBy (xpath="//span[text()='Save']")
-	private WebElement saveBtn;
+	@FindBy(xpath = "(//button[@ng-reflect-disabled='false'])[2]")
+	private WebElement saveBtn ;
+	@FindBy(xpath = "//span[text()='This DepartmentID already exists']")
+	private WebElement errorMsg;
+	@FindBy(xpath = "//span[text()='Cancel']")
+	private WebElement cancelBtn;
 	public DepartmentPage(WebDriver driver) {
 		PageFactory.initElements(driver, this);
 	}
@@ -45,6 +49,23 @@ public class DepartmentPage {
 	public WebElement getSaveBtn() {
 		return saveBtn;
 	}
+	
+	public WebDriverUtility getWlib() {
+		return wlib;
+	}
+
+	public ExcelFileUtility getElib() {
+		return elib;
+	}
+
+	public WebElement getErrorMsg() {
+		return errorMsg;
+	}
+
+	public WebElement getCancelBtn() {
+		return cancelBtn;
+	}
+
 	/** 
 	 * this method is used for Adding  department in the ticket configuration
 	 * @author rafeek
@@ -61,7 +82,17 @@ public class DepartmentPage {
 		departmentID.sendKeys(departmentid);
 		descriptionTbx.sendKeys(description);
 		metadataTbx.sendKeys(Metadata);
+		try {
 		saveBtn.click();
+		}
+		catch(Exception e)
+		{ 
+			String duplicateID = errorMsg.getText();
+			wlib.scrollAction(driver,cancelBtn);
+			cancelBtn.click();
+			System.out.println(departmentid+" "+duplicateID);
+			
+	    }
 		String ActualId = driver.findElement(By.xpath("//mat-cell[@class=\"mat-cell cdk-cell cdk-column-dept_id mat-column-dept_id ng-star-inserted\" and text()='"+" "+""+departmentid+"']")).getText();
 		Assert.assertEquals(departmentid, ActualId);
 		

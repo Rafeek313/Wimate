@@ -46,7 +46,8 @@ public class HomePage {
 	private WebElement Problembtn;
 	@FindBy(xpath = "//a[text()=' User ']")
 	private WebElement userbtn;
-
+	@FindBy(xpath = "//a[text()=' Asset ']")
+	private WebElement assetbtn;
 	public HomePage(WebDriver driver) {
 		PageFactory.initElements(driver, this);
 
@@ -150,7 +151,9 @@ public class HomePage {
 	}
 
 	/**
-	 * this method is used for click on subdepartment option and action class used  for scroll to the specific element 
+	 * this method is used for click on subdepartment option and action class used
+	 * for scroll to the specific element
+	 * 
 	 * @param driver
 	 * @throws InterruptedException
 	 * @author rafeek
@@ -162,7 +165,9 @@ public class HomePage {
 	}
 
 	/**
-	 * this method is used for click on manufacture option and action class used for scroll to the specific element 
+	 * this method is used for click on manufacture option and action class used for
+	 * scroll to the specific element
+	 * 
 	 * @param driver
 	 * @throws InterruptedException
 	 * @author rafeek
@@ -174,7 +179,9 @@ public class HomePage {
 	}
 
 	/**
-	 * this method is used for click on Model option and action class used for scroll to the specific element
+	 * this method is used for click on Model option and action class used for
+	 * scroll to the specific element
+	 * 
 	 * @param driver
 	 * @throws InterruptedException
 	 * @author rafeek
@@ -184,8 +191,11 @@ public class HomePage {
 		wlib.specificScrollAction(driver, modelbtn);
 
 	}
+
 	/**
-	 * this method is used for click on priority option and action class used for scroll to the specific element
+	 * this method is used for click on priority option and action class used for
+	 * scroll to the specific element
+	 * 
 	 * @param driver
 	 * @throws InterruptedException
 	 * @author rafeek
@@ -195,8 +205,11 @@ public class HomePage {
 		wlib.specificScrollAction(driver, prioritybtn);
 
 	}
+
 	/**
-	 * this method is used for click on location option and action class used for scroll to the specific element
+	 * this method is used for click on location option and action class used for
+	 * scroll to the specific element
+	 * 
 	 * @param driver
 	 * @throws InterruptedException
 	 * @author rafeek
@@ -206,8 +219,11 @@ public class HomePage {
 		wlib.specificScrollAction(driver, locationTypebtn);
 
 	}
+
 	/**
-	 * this method is used for click on location option and action class used for scroll to the specific element
+	 * this method is used for click on location option and action class used for
+	 * scroll to the specific element
+	 * 
 	 * @param driver
 	 * @throws InterruptedException
 	 * @author rafeek
@@ -217,8 +233,11 @@ public class HomePage {
 		wlib.specificScrollAction(driver, locationbtn);
 
 	}
+
 	/**
-	 * this method is used for click on asset map option and action class used for scroll to the specific element
+	 * this method is used for click on asset map option and action class used for
+	 * scroll to the specific element
+	 * 
 	 * @param driver
 	 * @throws InterruptedException
 	 * @author rafeek
@@ -228,8 +247,11 @@ public class HomePage {
 		wlib.specificScrollAction(driver, assetMapbtn);
 
 	}
+
 	/**
-	 * this method is used for click on user option and action class used for scroll to the specific element
+	 * this method is used for click on user option and action class used for scroll
+	 * to the specific element
+	 * 
 	 * @param driver
 	 * @throws InterruptedException
 	 * @author rafeek
@@ -238,5 +260,17 @@ public class HomePage {
 		wlib.maximizeWindow(driver);
 		wlib.specificScrollAction(driver, userbtn);
 	}
-	
+	/**
+	 * this method is used for click on Asset option and action class used for scroll
+	 * to the specific element
+	 * 
+	 * @param driver
+	 * @throws InterruptedException
+	 * @author rafeek
+	 */
+	public void clickonAssetButton(WebDriver driver) throws InterruptedException {
+		wlib.maximizeWindow(driver);
+		wlib.specificScrollAction(driver, assetbtn);
+	}
+
 }

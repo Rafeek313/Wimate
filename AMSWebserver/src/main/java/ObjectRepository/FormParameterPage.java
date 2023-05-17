@@ -69,6 +69,7 @@ public class FormParameterPage {
 	private WebElement pageDetails;
 	@FindBy(xpath = "//mat-icon[text()='refresh']")
 	private WebElement refreshbtn;
+
 	public FormParameterPage(WebDriver driver) {
 		PageFactory.initElements(driver, this);
 	}
@@ -249,13 +250,13 @@ public class FormParameterPage {
 				String Expecteddata = parameterId;
 				System.out.println(Expecteddata);
 
-				String ActualData = driver.findElement(By.xpath("//div[text()='"+parameterId+"']")).getText();
+				String ActualData = driver.findElement(By.xpath("//div[text()='" + parameterId + "']")).getText();
 				if (Expecteddata.contains(ActualData)) {
 					Assert.assertTrue(true);
 				} else {
 					Assert.assertTrue(false);
 				}
-				//Assert.assertEquals(Expecteddata, ActualData);
+				// Assert.assertEquals(Expecteddata, ActualData);
 				System.out.println(parameterId + " Added successfully");
 			} else {
 				Thread.sleep(1000);
@@ -266,9 +267,9 @@ public class FormParameterPage {
 				String Expecteddata = parameterId;
 				System.out.println(Expecteddata);
 
-				String ActualData = driver.findElement(By.xpath("//div[text()='"+parameterId+"']")).getText();
-				
-				//Assert.assertEquals(Expecteddata, ActualData);
+				String ActualData = driver.findElement(By.xpath("//div[text()='" + parameterId + "']")).getText();
+
+				// Assert.assertEquals(Expecteddata, ActualData);
 				if (Expecteddata.contains(ActualData)) {
 					Assert.assertTrue(true);
 				} else {
@@ -276,7 +277,7 @@ public class FormParameterPage {
 				}
 
 				System.out.println(parameterId + " Already exist");
-               
+
 			}
 
 		}

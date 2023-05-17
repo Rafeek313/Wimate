@@ -10,6 +10,7 @@ import GenericLibrary.BaseClass;
 import GenericLibrary.ExcelFileUtility;
 import GenericLibrary.PropertyFileUtility;
 import ObjectRepository.AssetMapPage;
+import ObjectRepository.AssetPage;
 import ObjectRepository.DepartmentPage;
 import ObjectRepository.FormParameterPage;
 import ObjectRepository.FormTypePage;
@@ -37,6 +38,7 @@ public class FormTest extends BaseClass {
 	LocationPage locationpage;
 	AssetMapPage assetMapPage;
 	UserPage userPage;
+	AssetPage assetPage;
 	ExcelFileUtility elib = new ExcelFileUtility();
 
 	/**
@@ -79,7 +81,7 @@ public class FormTest extends BaseClass {
 		homePage.clickonDepartmentButton();
 		departmentPage = new DepartmentPage(driver);
 		departmentPage.addDepartment(driver);
-		Reporter.log("department added successfully");
+		Reporter.log("department added successfully",true);
 
 	}
 
@@ -97,7 +99,7 @@ public class FormTest extends BaseClass {
 		homePage.clickonSubDepartmentButton(driver);
 		subdepartmentpage = new SubDepartmentPage(driver);
 		subdepartmentpage.AddSubDepartment(driver);
-		Reporter.log("sub department added successfully");
+		Reporter.log("sub department added successfully",true);
 
 	}
 
@@ -115,7 +117,7 @@ public class FormTest extends BaseClass {
 		homePage.clickonManufactureButton(driver);
 		manufacturepage = new ManufacturePage(driver);
 		manufacturepage.addManufacture(driver);
-		Reporter.log("manufacture added successfully");
+		Reporter.log("manufacture added successfully",true);
 
 	}
 
@@ -132,7 +134,7 @@ public class FormTest extends BaseClass {
 		homePage.clickonModelButton(driver);
 		modelpage = new ModelPage(driver);
 		modelpage.addModel(driver);
-		Reporter.log("model added successfully");
+		Reporter.log("model added successfully",true);
 
 	}
 	/**
@@ -148,7 +150,7 @@ public class FormTest extends BaseClass {
 		homePage.clickonPriorityButton(driver);
 		prioritypage = new PriorityPage(driver);
 		prioritypage.addPriority(driver);
-		Reporter.log("model added successfully");
+		Reporter.log("model added successfully",true);
 
 	}
 	/**
@@ -163,7 +165,7 @@ public class FormTest extends BaseClass {
 		homePage.clickonLocationTypeButton(driver);
 		locationTypePage = new LocationTypePage(driver);
 		locationTypePage.addLocationType(driver);
-		Reporter.log("model added successfully");
+		Reporter.log("location type   added successfully",true);
 
 	}
 	/**
@@ -178,7 +180,7 @@ public class FormTest extends BaseClass {
 		homePage.clickonLocationButton(driver);
 		locationpage = new LocationPage(driver);
 		locationpage.addLocation(driver);
-		Reporter.log("model added successfully");
+		Reporter.log("location  added successfully",true);
 
 	}
 	/**
@@ -193,7 +195,7 @@ public class FormTest extends BaseClass {
 		homePage.clickonAssetMapButton(driver);
 		assetMapPage = new AssetMapPage(driver);
 		assetMapPage.addAssetMap(driver);
-		Reporter.log("asset map added successfully");
+		Reporter.log("asset map added successfully",true);
 
 	}
 	/**
@@ -208,7 +210,22 @@ public class FormTest extends BaseClass {
 		homePage.clickonUserButton(driver);
 		userPage = new UserPage(driver);
 		userPage.addUser(driver);
-		Reporter.log(" new user added successfully");
+		Reporter.log(" new user added successfully",true);
+
+	}
+	/**
+	 * this method is used for adding asset for ticket configuration 
+	 * @author rafeek
+	 */
+	@Test
+	public void addAsset() throws IOException, Throwable {
+		wlib.waitForPageLoad(driver);
+		homePage = new HomePage(driver);
+		homePage.clickonConfigButton();
+		homePage.clickonAssetButton(driver);
+		assetPage = new AssetPage(driver);
+		assetPage.addAsset(driver);
+		Reporter.log(" new user added successfully",true);
 
 	}
 }

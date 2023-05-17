@@ -229,7 +229,8 @@ public class FormTypePage {
 				String Expecteddata = typeId;
 				System.out.println(Expecteddata);
 
-				String ActualData = driver.findElement(By.xpath("//mat-cell[contains(text(),'"+typeId+"')]")).getText();
+				String ActualData = driver.findElement(By.xpath("//mat-cell[contains(text(),'" + typeId + "')]"))
+						.getText();
 //				if (Expecteddata.contains(ActualData)) {
 //					Assert.assertTrue(true);
 //				} else {
@@ -237,18 +238,18 @@ public class FormTypePage {
 //				}
 				Assert.assertEquals(Expecteddata, ActualData);
 				System.out.println(typeId + " Added successfully");
-			} 
-			else {
+			} else {
 				Thread.sleep(1000);
-				
+
 				cancelbtn.click();
 				refreshbtn.click();
 				searchBtn.clear();
 				searchBtn.sendKeys(typeId);
 				String Expecteddata = typeId;
 				System.out.println(Expecteddata);
-                Thread.sleep(2000);
-				String ActualData = driver.findElement(By.xpath("//mat-cell[contains(text(),'"+typeId+"')]")).getText();
+				Thread.sleep(2000);
+				String ActualData = driver.findElement(By.xpath("//mat-cell[contains(text(),'" + typeId + "')]"))
+						.getText();
 //				if (Expecteddata.contains(ActualData)) {
 //					Assert.assertTrue(true);
 //				} 
@@ -261,5 +262,4 @@ public class FormTypePage {
 		}
 		Reporter.log("form type added successfully", true);
 	}
-	}
-
+}

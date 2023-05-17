@@ -23,8 +23,12 @@ public class LocationTypePage {
 	private WebElement descriptionTbx;
 	@FindBy(xpath = "//input[@ng-reflect-name='Metadata']")
 	private WebElement MetaDataTbx;
-	@FindBy(xpath = "//span[text()='Save']")
-	private WebElement saveBtn;
+	@FindBy(xpath = "//span[text()='Cancel']")
+	private WebElement cancelBtn;
+	@FindBy(xpath = "//span[text()='This LocationTypeID already exists']")
+	private WebElement errorMsg;
+	@FindBy(xpath = "(//button[@ng-reflect-disabled='false'])[2]")
+	private WebElement saveBtn ;
 
 	public LocationTypePage(WebDriver driver) {
 		PageFactory.initElements(driver, this);
@@ -58,6 +62,14 @@ public class LocationTypePage {
 		return saveBtn;
 	}
 
+	public WebElement getCancelBtn() {
+		return cancelBtn;
+	}
+
+	public WebElement getErrorMsg() {
+		return errorMsg;
+	}
+
 	public void addLocationType(WebDriver driver) throws IOException, Throwable {
 		wlib.waitForPageLoad(driver);
 		int count = elib.getRowCount("LocationType");
@@ -70,7 +82,17 @@ public class LocationTypePage {
 			locationTypeIdTbx.sendKeys(locationTypeid);
 			descriptionTbx.sendKeys(description);
 			MetaDataTbx.sendKeys(metadata);
-			saveBtn.click();
+			try {
+				saveBtn.click();
+				}
+				catch(Exception e)
+				{ 
+					String duplicateID = errorMsg.getText();
+					wlib.scrollAction(driver,cancelBtn);
+					cancelBtn.click();
+					System.out.println(locationTypeid+" "+duplicateID);
+					
+			    }
 			String ActualId = driver.findElement(By.xpath(
 					"//mat-cell[@class='mat-cell cdk-cell cdk-column-location_type_id mat-column-location_type_id ng-star-inserted' and text()='"
 							+ " " + "" + locationTypeid + "']"))

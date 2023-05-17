@@ -23,8 +23,12 @@ public class PriorityPage {
 	private WebElement descriptionTbx;
 	@FindBy(xpath = "//input[@ng-reflect-name='metadata']")
 	private WebElement MetaDataTbx;
-	@FindBy(xpath = "//span[text()='Save']")
-	private WebElement saveBtn;
+	@FindBy(xpath = "//span[text()='Cancel']")
+	private WebElement cancelBtn;
+	@FindBy(xpath = "//span[text()='This PriorityID already exists']")
+	private WebElement errorMsg;
+	@FindBy(xpath = "(//button[@ng-reflect-disabled='false'])[2]")
+	private WebElement saveBtn ;
  public PriorityPage(WebDriver driver)
  {
 	 PageFactory.initElements(driver, this);
@@ -69,7 +73,17 @@ public class PriorityPage {
 			priorityIdTbx.sendKeys(priorityid);
 			descriptionTbx.sendKeys(description);
 			MetaDataTbx.sendKeys(metadata);
-			saveBtn.click();
+			try {
+				saveBtn.click();
+				}
+				catch(Exception e)
+				{ 
+					String duplicateID = errorMsg.getText();
+					wlib.scrollAction(driver,cancelBtn);
+					cancelBtn.click();
+					System.out.println(priorityid+" "+duplicateID);
+					
+			    }
 			String ActualId = driver.findElement(By.xpath(
 					"//mat-cell[@class='mat-cell cdk-cell cdk-column-priority_id mat-column-priority_id ng-star-inserted' and text()='"
 							+ " " + "" + priorityid + "']"))
