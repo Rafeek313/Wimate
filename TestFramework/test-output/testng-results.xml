@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="2" total="3" passed="1" failed="0" skipped="0">
+  <reporter-output>
+    <line>
+      <![CDATA[launching browser successful=====]]>
+    </line>
+    <line>
+      <![CDATA[login successful]]>
+    </line>
+    <line>
+      <![CDATA[dydb dashboard loaded successfully]]>
+    </line>
+  </reporter-output>
+  <suite started-at="2023-06-07T16:45:33 IST" name="Default suite" finished-at="2023-06-07T16:45:56 IST" duration-ms="22878">
+    <groups>
+    </groups>
+    <test started-at="2023-06-07T16:45:33 IST" name="Default test" finished-at="2023-06-07T16:45:56 IST" duration-ms="22878">
+      <class name="DeviceTest.DeviceTest">
+        <test-method is-config="true" signature="launchBrowser()[pri:0, instance:DeviceTest.DeviceTest@413d1baf]" started-at="2023-06-07T16:45:33 IST" name="launchBrowser" finished-at="2023-06-07T16:45:48 IST" duration-ms="14519" status="PASS">
+          <reporter-output>
+            <line>
+              <![CDATA[launching browser successful=====]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- launchBrowser -->
+        <test-method is-config="true" signature="login()[pri:0, instance:DeviceTest.DeviceTest@413d1baf]" started-at="2023-06-07T16:45:48 IST" name="login" finished-at="2023-06-07T16:45:49 IST" duration-ms="1414" status="PASS">
+          <reporter-output>
+            <line>
+              <![CDATA[login successful]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- login -->
+        <test-method signature="verifyDYDB()[pri:0, instance:DeviceTest.DeviceTest@413d1baf]" started-at="2023-06-07T16:45:49 IST" name="verifyDYDB" finished-at="2023-06-07T16:45:56 IST" duration-ms="6870" status="PASS">
+          <reporter-output>
+            <line>
+              <![CDATA[dydb dashboard loaded successfully]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- verifyDYDB -->
+      </class> <!-- DeviceTest.DeviceTest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
