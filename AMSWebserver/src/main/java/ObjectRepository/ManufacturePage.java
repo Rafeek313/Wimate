@@ -27,8 +27,10 @@ public class ManufacturePage {
 	private WebElement cancelBtn;
 	@FindBy(xpath = "//span[text()='This ManufacturerID already exists']")
 	private WebElement errorMsg;
-	@FindBy(xpath = "(//button[@ng-reflect-disabled='false'])[2]")
-	private WebElement saveBtn ;
+//	@FindBy(xpath = "(//button[@ng-reflect-disabled='false'])[2]")
+//	private WebElement saveBtn ;
+	@FindBy(xpath = "//span[.='Save']")
+	private WebElement saveBtn;
 	public ManufacturePage(WebDriver driver) {
 		PageFactory.initElements(driver, this);
 	}
@@ -72,9 +74,11 @@ public class ManufacturePage {
 		int count = elib.getRowCount("Manufacture");
 		System.out.println(count);
 		for(int i=1;i<=count;i++) {
-		String manufactureid = elib.readDataFromExcel("Manufacture", i, 0);
-		String description = elib.readDataFromExcel("Manufacture", i, 1);
-		String metadata = elib.readDataFromExcel("Manufacture", i, 2);
+			long epochTime = System.currentTimeMillis();
+			String manufactureid = Long.toString(epochTime);
+		//String manufactureid = elib.readDataFromExcel("Manufacture", i, 0);
+		String description = elib.readDataFromExcel("Manufacture", i, 0);
+		String metadata = elib.readDataFromExcel("Manufacture", i, 1);
 		Thread.sleep(1000);
 		AddBtn.click();
 		Thread.sleep(500);
@@ -94,6 +98,7 @@ public class ManufacturePage {
 		    }
 		String ActualId = driver.findElement(By.xpath("//mat-cell[@class='mat-cell cdk-cell cdk-column-manufacturer_id mat-column-manufacturer_id ng-star-inserted' and text()='"+" "+""+manufactureid+"']")).getText();
 		Assert.assertEquals(manufactureid, ActualId);
+		elib.writeDataIntoExcel("Asset", i, 9, manufactureid);
 	}
 }
 }

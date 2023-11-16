@@ -23,11 +23,11 @@ public class AssetPage {
 	@FindBy(xpath = "//input[@ng-reflect-name='tag_id']")
 	private WebElement tagIDTbx;
 	//@FindBy(xpath = "(//div[contains(@class,'mat-select-arrow-wrapper ng-tns')])[2]")
-	@FindBy(xpath = "//div[@class='mat-select-arrow-wrapper ng-tns-c216-22']")
+	@FindBy(xpath = "//mat-select[contains(@ng-reflect-name,'assetMapAssetsId')]")
 	private WebElement assetTypeIDDrpDwn;
-	@FindBy(xpath = "(//div[contains(@class,'mat-select-arrow-wrapper ng-tns')])[3]")
+	@FindBy(xpath = "//mat-select[contains(@ng-reflect-name,'departmentAssetsId')]")
 	private WebElement departmentIDDrpDwn;
-	@FindBy(xpath = "(//div[contains(@class,'mat-select-arrow-wrapper ng-tns')])[4]")
+	@FindBy(xpath = "//mat-select[contains(@ng-reflect-name,'subDepartmentAssetsId')]")
 	private WebElement subDepartmentIDDrpDwn;
 	@FindBy(xpath = "//input[@ng-reflect-name='amc_expiry']")
 	private WebElement amcExpireDate;
@@ -35,15 +35,15 @@ public class AssetPage {
 	private WebElement boughtPriceTbx;
 	@FindBy(xpath = "//input[@ng-reflect-name='current_price']")
 	private WebElement currentPriceTbx;
-	@FindBy(xpath = "(//div[contains(@class,'mat-select-arrow-wrapper ng-tns')])[5]")
+	@FindBy(xpath = "//mat-select[contains(@ng-reflect-name,'locationAssetsId')]")
 	private WebElement locationIdDrpDwn;
-	@FindBy(xpath = "(//div[contains(@class,'mat-select-arrow-wrapper ng-tns')])[6]")
+	@FindBy(xpath = "//mat-select[contains(@ng-reflect-name,'vendorCompanyAssetsId')]")
 	private WebElement vendorCompanyIdDrpDwn;
-	@FindBy(xpath = "(//div[contains(@class,'mat-select-arrow-wrapper ng-tns')])[7]")
+	@FindBy(xpath = "//mat-select[contains(@ng-reflect-name,'asset_type')]")
 	private WebElement assetTypeDrpDwn;
-	@FindBy(xpath = "(//div[contains(@class,'mat-select-arrow-wrapper ng-tns')])[8]")
+	@FindBy(xpath = "//mat-select[contains(@ng-reflect-name,'manufacturerAssetsId')]")
 	private WebElement manufacturerIdDrpDwn;
-	@FindBy(xpath = "(//div[contains(@class,'mat-select-arrow-wrapper ng-tns')])[9]")
+	@FindBy(xpath = "//mat-select[contains(@ng-reflect-name,'modelAssetsId')]")
 	private WebElement modelIdDrpDwn;
 	@FindBy(xpath = "//input[@ng-reflect-name='metadata']")
 	private WebElement metadataTbx;
@@ -55,9 +55,9 @@ public class AssetPage {
 	private WebElement nextServiceDateTbx;
 	@FindBy(xpath = "//input[@ng-reflect-name='group']")
 	private WebElement groupTbx;
-	@FindBy(xpath = "(//div[contains(@class,'mat-select-arrow-wrapper ng-tns')])[10]")
+	@FindBy(xpath = "//mat-select[contains(@ng-reflect-name,'tech_id')]")
 	private WebElement technicianIdDrpDwn;
-	@FindBy(xpath = "(//div[contains(@class,'mat-select-arrow-wrapper ng-tns')])[11]")
+	@FindBy(xpath = "//mat-select[contains(@ng-reflect-name,'user_notify_id')]")
 	private WebElement userNotifyDrpDwn;
 	@FindBy(xpath = "//span[text()='Cancel']")
 	private WebElement cancelBtn;
@@ -182,28 +182,31 @@ public class AssetPage {
 		System.out.println(count);
 
 		for (int i = 1; i <= count; i++) {
+			long epochTime = System.currentTimeMillis();
+			String assetID = Long.toString(epochTime);
 
 			// Reading all field data from excel
-			String assetID = elib.readDataFromExcel("Asset", i, 0);
-			String tagID = elib.readDataFromExcel("Asset", i, 1);
-			String assetTypeID = elib.readDataFromExcel("Asset", i, 2);
-			String departmentID = elib.readDataFromExcel("Asset", i, 3);
-			String subDepartmentID = elib.readDataFromExcel("Asset", i, 4);
-			String amcExpiryDate = elib.readDataFromExcel("Asset", i, 5);
-			String boughtprice = elib.readDataFromExcel("Asset", i, 6);
-			String currentprice = elib.readDataFromExcel("Asset", i, 7);
-			String locationid = elib.readDataFromExcel("Asset", i, 8);
-			String vendorCompanyID = elib.readDataFromExcel("Asset", i, 9);
-			String assetType = elib.readDataFromExcel("Asset", i, 10);
-			String manufacturerID = elib.readDataFromExcel("Asset", i, 11);
-			String modelID = elib.readDataFromExcel("Asset", i, 12);
-			String metaData = elib.readDataFromExcel("Asset", i, 13);
-			String installationDate = elib.readDataFromExcel("Asset", i, 14);
-			String latestServiceDate = elib.readDataFromExcel("Asset", i, 15);
-			String nextServiceDate = elib.readDataFromExcel("Asset", i, 16);
-			String group = elib.readDataFromExcel("Asset", i, 17);
-			String technicianID = elib.readDataFromExcel("Asset", i, 18);
-			String userNotifyID = elib.readDataFromExcel("Asset", i, 19);
+			//String assetID = elib.readDataFromExcel("Asset", i, 0);
+			//String tagID = elib.readDataFromExcel("Asset", i, 0);
+			String assetTypeID = elib.readDataFromExcel("Asset", i, 0);
+			String tagID = Long.toString(epochTime);
+			String departmentID = elib.readDataFromExcel("Asset", i, 1);
+			String subDepartmentID = elib.readDataFromExcel("Asset", i, 2);
+			String amcExpiryDate = elib.readDataFromExcel("Asset", i, 3);
+			String boughtprice = elib.readDataFromExcel("Asset", i, 4);
+			String currentprice = elib.readDataFromExcel("Asset", i, 5);
+			String locationid = elib.readDataFromExcel("Asset", i, 6);
+			String vendorCompanyID = elib.readDataFromExcel("Asset", i, 7);
+			String assetType = elib.readDataFromExcel("Asset", i, 8);
+			String manufacturerID = elib.readDataFromExcel("Asset", i, 9);
+			String modelID = elib.readDataFromExcel("Asset", i, 10);
+			String metaData = elib.readDataFromExcel("Asset", i, 11);
+			String installationDate = elib.readDataFromExcel("Asset", i, 12);
+			String latestServiceDate = elib.readDataFromExcel("Asset", i, 13);
+			String nextServiceDate = elib.readDataFromExcel("Asset", i, 14);
+			String group = elib.readDataFromExcel("Asset", i, 15);
+			String technicianID = elib.readDataFromExcel("Asset", i, 16);
+			String userNotifyID = elib.readDataFromExcel("Asset", i, 17);
 			Thread.sleep(1000);
 			// click on Add new button
 			AddBtn.click();
@@ -219,7 +222,7 @@ public class AssetPage {
 			Thread.sleep(500);
 			// dynamic xpath for asset type id webelement
 			WebElement assetTypeIDWe = driver
-					.findElement(By.xpath("//span[text()='" + " " + "" + assetTypeID + "" + " " + "']"));
+					.findElement(By.xpath("//mat-option[contains(@ng-reflect-value,'" + "" + assetTypeID + "" +  "')]"));
 			System.out.println(assetTypeIDWe);
 			// scroll action for the dynamic location id webelement
 			wlib.scrollAction(driver, assetTypeIDWe);
@@ -229,7 +232,7 @@ public class AssetPage {
 			departmentIDDrpDwn.click();
 			// dynamic xpath for department id webelement
 			WebElement departmentIDWe = driver
-					.findElement(By.xpath("//span[text()='" + " " + "" + departmentID + "" + " " + "']"));
+					.findElement(By.xpath("//mat-option[contains(@ng-reflect-value,'" +  "" + departmentID + "" + "')]"));
 			// scroll action for the dynamic location id webelement
 			wlib.scrollAction(driver, departmentIDWe);
 			// click on specific location id webelement
@@ -238,7 +241,7 @@ public class AssetPage {
 			subDepartmentIDDrpDwn.click();
 			// dynamic xpath for subdepartment id webelement
 			WebElement subdepartmentIDWe = driver
-					.findElement(By.xpath("//span[text()='" + " " + "" + subDepartmentID + "" + " " + "']"));
+					.findElement(By.xpath("//mat-option[contains(@ng-reflect-value,'" + ""  + subDepartmentID + "" +  "')]"));
 			// scroll action for the dynamic location id webelement
 			wlib.scrollAction(driver, subdepartmentIDWe);
 			// click on specific location id webelement
@@ -255,7 +258,7 @@ public class AssetPage {
 			locationIdDrpDwn.click();
 			// dynamic xpath for location id webelement
 			WebElement locationIDWe = driver
-					.findElement(By.xpath("//span[text()='" + " " + "" + locationid + "" + " " + "']"));
+					.findElement(By.xpath("//mat-option[contains(@ng-reflect-value,'"  + "" + locationid + "" + "')]"));
 			// scroll action for the dynamic location id webelement
 			wlib.scrollAction(driver, locationIDWe);
 			// click on specific location id webelement
@@ -264,7 +267,7 @@ public class AssetPage {
 			vendorCompanyIdDrpDwn.click();
 			// dynamic xpath for vendor company  id webelement
 			WebElement vendorCompanyIDWe = driver
-					.findElement(By.xpath("//span[text()='" + " " + "" + vendorCompanyID + "" + " " + "']"));
+					.findElement(By.xpath("//mat-option[contains(@ng-reflect-value,'" +  "" + vendorCompanyID + "" + "')]"));
 			// scroll action for the dynamic location id webelement
 			wlib.scrollAction(driver, vendorCompanyIDWe);
 			// click on specific location id webelement
@@ -273,65 +276,72 @@ public class AssetPage {
 			assetTypeDrpDwn.click();
 			// dynamic xpath for asset type webelement
 			WebElement assetTypeWe = driver
-					.findElement(By.xpath("//span[text()='" + " " + "" + assetType + "" + " " + "']"));
+					.findElement(By.xpath("//mat-option[contains(@ng-reflect-value,'"  + "" + assetType + "" +  "')]"));
 			// scroll action for the dynamic asset type webelement
 			wlib.scrollAction(driver, assetTypeWe);
 			// click on specific asset type webelement
 			assetTypeWe.click();
 			// click on Manfacturer id dropdown
-						manufacturerIdDrpDwn.click();
-						// dynamic xpath for Manfacturer id webelement
-						WebElement manufacturerWe = driver
-								.findElement(By.xpath("//span[text()='" + " " + "" + manufacturerID + "" + " " + "']"));
-						// scroll action for the dynamic Manfacturer id webelement
-						wlib.scrollAction(driver, manufacturerWe);
-						// click on specific Manfacturer id webelement
-						manufacturerWe.click();
-						// click on Model id dropdown
-						modelIdDrpDwn.click();
-						// dynamic xpath for Model id webelement
-						WebElement modelWe = driver
-								.findElement(By.xpath("//span[text()='" + " " + "" + modelID + "" + " " + "']"));
-						// scroll action for the dynamic Model id webelement
-						wlib.scrollAction(driver, modelWe);
-						// click on specific Model id webelement
-						modelWe.click();
-						// adding value into the metadata  textbox
-						metadataTbx.sendKeys(metaData);
-						// adding value into the installation date  textbox
-						installationDateTbx.sendKeys(installationDate);
-						// adding value into the latest service date textbox
-						lastServiceDateTbx.sendKeys(latestServiceDate);
-						// adding value into the next service  date  textbox
-						nextServiceDateTbx.sendKeys(nextServiceDate);
-						// adding value into the group  textbox
-						groupTbx.sendKeys(group);
-						// click on technician id dropdown
-						technicianIdDrpDwn.click();
-						// dynamic xpath for technician id webelement
-						WebElement technicianIDWe = driver
-								.findElement(By.xpath("//span[text()='" + " " + "" + technicianID + "" + " " + "']"));
-						// scroll action for the dynamic technician id webelement
-						wlib.scrollAction(driver, technicianIDWe);
-						// click on specific technician id webelement
-						technicianIDWe.click();
-						// click on user notify id dropdown
-						userNotifyDrpDwn.click();
-						// dynamic xpath for problem id web element
-						WebElement UNWe = driver.findElement(By.xpath("//span[text()='" + userNotifyID + "" + " " + "']"));
-						// scroll action for the dynamic problem id web element
-						wlib.scrollAction(driver, UNWe);
-						// click on specific problem id web element
-						UNWe.click();
-						Thread.sleep(2000);
-						// action class will close the hidden popup after selecting problems
-						Actions actions = new Actions(driver);
-						actions.moveToElement(saveButton).doubleClick(saveButton).build().perform();
+			manufacturerIdDrpDwn.click();
+			// dynamic xpath for Manfacturer id webelement
+			WebElement manufacturerWe = driver
+					.findElement(By.xpath("//mat-option[contains(@ng-reflect-value,'"  + "" + manufacturerID + "" + "')]"));
+			// scroll action for the dynamic Manfacturer id webelement
+			wlib.scrollAction(driver, manufacturerWe);
+			// click on specific Manfacturer id webelement
+			manufacturerWe.click();
+			// click on Model id dropdown
+			modelIdDrpDwn.click();
+			// dynamic xpath for Model id webelement
+			WebElement modelWe = driver
+					.findElement(By.xpath("//mat-option[contains(@ng-reflect-value,'"  + "" + modelID + "" +  "')]"));
+			// scroll action for the dynamic Model id webelement
+			wlib.scrollAction(driver, modelWe);
+			// click on specific Model id webelement
+			modelWe.click();
+			// adding value into the metadata  textbox
+			metadataTbx.sendKeys(metaData);
+			// adding value into the installation date  textbox
+			installationDateTbx.sendKeys(installationDate);
+			// adding value into the latest service date textbox
+			lastServiceDateTbx.sendKeys(latestServiceDate);
+			// adding value into the next service  date  textbox
+			nextServiceDateTbx.sendKeys(nextServiceDate);
+			// adding value into the group  textbox
+			groupTbx.sendKeys(group);
+			// click on technician id dropdown
+			technicianIdDrpDwn.click();
+			// dynamic xpath for technician id webelement
+			WebElement technicianIDWe = driver
+					.findElement(By.xpath("(//span[contains(text(),'" + "" + technicianID + "" +  "')])[2]"));
+			// scroll action for the dynamic technician id webelement
+			wlib.scrollAction(driver, technicianIDWe);
+			// click on specific technician id webelement
+			technicianIDWe.click();
+			// click on user notify id dropdown
+			userNotifyDrpDwn.click();
+			wlib.waitForPageLoad(driver);
+			// dynamic xpath for problem id web element
+			//WebElement UNWe = driver.findElement(By.xpath("//span[contains(text(),'" + userNotifyID + "" +  "')]"));
+			//WebElement UNWe = driver.findElement(By.xpath("//span[contains(text(),'"+userNotifyID+"')]/ancestor::div[@class='cdk-overlay-pane']/div/div[@id=\"mat-select-20-panel\"]/descendant::span[contains(text(),'"+userNotifyID+"')]"));
+			//WebElement UNWe =driver.findElement(By.xpath("//div[@class='cdk-overlay-pane']/descendant-or-self::span[contains(text(),'"+userNotifyID+"') and @class='mat-option-text']"));
+			WebElement UNWe=driver.findElement(By.xpath("//mat-pseudo-checkbox[@class='mat-pseudo-checkbox mat-option-pseudo-checkbox ng-star-inserted']/following-sibling::span[contains(text(),'"+userNotifyID+"')]"));
+			System.out.println("usernotifyid"+userNotifyID);
+			// scroll action for the dynamic problem id web element
+			wlib.scrollAction(driver, UNWe);
+			// click on specific problem id web element
+			wlib.waitForPageLoad(driver);
+			UNWe.click();
+			wlib.waitForPageLoad(driver);
+			
 			// scroll action for the save button
-			wlib.scrollAction(driver, saveButton);
-			Thread.sleep(1000);
+			//wlib.scrollAction(driver, saveButton);
 			try {
-				saveBtn.click();
+				//wlib.scrollAction(driver, saveButton);
+				//saveBtn.click();
+				// action class will close the hidden popup after selecting problems
+				Actions actions = new Actions(driver);
+				actions.moveToElement(saveButton).doubleClick(saveButton).build().perform();
 			} catch (Exception e) {
 				String duplicateID = errorMsg.getText();
 				wlib.scrollAction(driver, cancelBtn);
@@ -349,4 +359,4 @@ public class AssetPage {
 		}
 
 	}
-	}
+}

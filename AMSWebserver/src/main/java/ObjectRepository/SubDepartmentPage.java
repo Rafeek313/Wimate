@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import org.testng.Reporter;
 
 import GenericLibrary.ExcelFileUtility;
 import GenericLibrary.WebDriverUtility;
@@ -23,10 +24,12 @@ public class SubDepartmentPage {
 	private WebElement MetaDataTbx;
 	@FindBy(xpath = "//span[text()='Cancel']")
 	private WebElement cancelBtn;
-	@FindBy(xpath = "//span[text()='This SubdepartmentID already exists']")
+	@FindBy(xpath = "//span[contains(text(),'already')]")
 	private WebElement errorMsg;
-	@FindBy(xpath = "(//button[@ng-reflect-disabled='false'])[2]")
-	private WebElement saveBtn ;
+//	@FindBy(xpath = "(//button[@ng-reflect-disabled='false'])[2]")
+//	private WebElement saveBtn ;
+	@FindBy(xpath = "//span[.='Save']")
+	private WebElement saveBtn;
 	public SubDepartmentPage(WebDriver driver) {
 		PageFactory.initElements(driver, this);
 	}
@@ -67,9 +70,11 @@ public class SubDepartmentPage {
 		wlib.waitForPageLoad(driver);
 		int count = elib.getRowCount("SubDepartment");
 		for(int i=1;i<=count;i++) {
-		String subdepartmentid = elib.readDataFromExcel("SubDepartment", i, 0);
-		String description = elib.readDataFromExcel("SubDepartment", i, 1);
-		String metadata = elib.readDataFromExcel("SubDepartment", i, 2);
+			long epochTime = System.currentTimeMillis();
+			String subdepartmentid = Long.toString(epochTime);	
+		//String subdepartmentid = elib.readDataFromExcel("SubDepartment", i, 0);
+		String description = elib.readDataFromExcel("SubDepartment", i, 0);
+		String metadata = elib.readDataFromExcel("SubDepartment", i, 1);
 		AddBtn.click();
 		Thread.sleep(1000);
 		subDeptId.sendKeys(subdepartmentid);
@@ -88,6 +93,9 @@ public class SubDepartmentPage {
 	    }
 		String ActualId = driver.findElement(By.xpath("//mat-cell[@class='mat-cell cdk-cell cdk-column-sub_dept_id mat-column-sub_dept_id ng-star-inserted' and text()='"+" "+""+subdepartmentid+"']")).getText();
 		Assert.assertEquals(subdepartmentid, ActualId);
+		elib.writeDataIntoExcel("Asset", i, 2, ActualId);
+		String assetSD = elib.readDataFromExcel("Asset", i, 2);
+		Reporter.log(assetSD+ "added into excel sheet", true);
 	}
 	
 }

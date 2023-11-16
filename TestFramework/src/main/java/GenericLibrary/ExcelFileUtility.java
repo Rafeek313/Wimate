@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
@@ -23,7 +24,7 @@ public class ExcelFileUtility {
 	 * @throws Throwable
 	 * @throws IOException
 	 */
-	public String readDataFromExcel(String sheetname, int rownum, int cellnum) throws Throwable, IOException {
+	public  String readDataFromExcel(String sheetname, int rownum, int cellnum) throws Throwable, IOException {
 		FileInputStream fis = new FileInputStream(IpathConstants.ExcelPath);
 		Workbook wb = WorkbookFactory.create(fis);
 		String value = wb.getSheet(sheetname).getRow(rownum).getCell(cellnum).getStringCellValue();
@@ -98,5 +99,21 @@ public class ExcelFileUtility {
 		}
 		return data;
 	}
+	public static String Excelread(String filename, int row, int cell, int sheetno) {
+		   String s = null;
+		   try {
+		       DataFormatter df = new DataFormatter();
+		       FileInputStream fis = new FileInputStream(IpathConstants.ExcelPath);
+		       Workbook wb = WorkbookFactory.create(fis);
+		       Sheet sh = wb.getSheetAt(sheetno);
+		       int col = sh.getRow(row).getLastCellNum();
+		       Cell c = sh.getRow(row).getCell(cell);
+		       s = df.formatCellValue(c);
+		   } catch (Exception e) {
+		       System.out.println(e);
+		   }
+		   return s;
+
+		    }
 
 }

@@ -14,7 +14,7 @@ import org.testng.annotations.BeforeMethod;
 
 import ObjectRepository.HomePage;
 import ObjectRepository.LoginPage;
-import io.github.bonigarcia.wdm.WebDriverManager;
+// import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class BaseClass {
 	// creating object of webdriver utility methods
@@ -37,14 +37,14 @@ public class BaseClass {
 		String BROWSER = plib.readDataFromPropertyFile("browser");
 		String URL = plib.readDataFromPropertyFile("url");
 		if (BROWSER.equalsIgnoreCase("chrome")) {
-			WebDriverManager.chromedriver().setup();
+			//WebDriverManager.chromedriver().setup();
 			// ChromeOptions options=new ChromeOptions();
 			// options.addArguments("--headless=new");
 			// options.setHeadless(true);
 			driver = new ChromeDriver();
 
 		} else if (BROWSER.equalsIgnoreCase("firefox")) {
-			WebDriverManager.firefoxdriver().setup();
+			//WebDriverManager.firefoxdriver().setup();
 			driver = new FirefoxDriver();
 
 		} else {

@@ -45,19 +45,19 @@ public class WebDriverUtility {
 		driver.manage().window().fullscreen();
 	}
 	/**
-	 * this method will wait 10 seconds for the page loading
+	 * this method will wait 20 seconds for the page loading
 	 * @param driver
 	 */
 	public void waitForPageLoadTimeOut(WebDriver driver) {
-		driver.manage().timeouts().pageLoadTimeout(20,TimeUnit.SECONDS );
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 	}
 	/**
-	 * this method will wait 10 seconds for the find elements
+	 * this method will wait 5 seconds for the find elements
 	 * 
 	 * @param driver
 	 */
 	public void waitForPageLoad(WebDriver driver) {
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 	}
 	/**
 	 * this method will wait until element visible in the Dom 
@@ -65,7 +65,7 @@ public class WebDriverUtility {
 	 * @param driver
 	 */
 	public static void waitForElementToBeClickable(WebDriver driver, WebElement element) {
-		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.visibilityOf(element));
 	}
 	/**
@@ -74,7 +74,7 @@ public class WebDriverUtility {
 	 * @param driver
 	 */
 	public static void waitForElementToBePresent(WebDriver driver, WebElement element) {
-		new WebDriverWait(driver, 10).ignoring(StaleElementReferenceException.class )
+		new WebDriverWait(driver, Duration.ofSeconds(10)).ignoring(StaleElementReferenceException.class )
 		.until(ExpectedConditions.elementToBeClickable(element));
 
 

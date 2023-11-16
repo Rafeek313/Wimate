@@ -27,8 +27,10 @@ public class ModelPage {
 	private WebElement cancelBtn;
 	@FindBy(xpath = "//span[text()='This ModelID already exists']")
 	private WebElement errorMsg;
-	@FindBy(xpath = "(//button[@ng-reflect-disabled='false'])[2]")
-	private WebElement saveBtn ;
+//	@FindBy(xpath = "(//button[@ng-reflect-disabled='false'])[2]")
+//	private WebElement saveBtn ;
+	@FindBy(xpath = "//span[.='Save']")
+	private WebElement saveBtn;
 
 	public ModelPage(WebDriver driver) {
 		PageFactory.initElements(driver, this);
@@ -73,10 +75,13 @@ public class ModelPage {
 	public void addModel(WebDriver driver) throws IOException, Throwable {
 		wlib.waitForPageLoad(driver);
 		int count = elib.getRowCount("Model");
+		System.out.println(count);
 		for (int i = 1; i <= count; i++) {
-			String modelid = elib.readDataFromExcel("Model", i, 0);
-			String description = elib.readDataFromExcel("Model", i, 1);
-			String metadata = elib.readDataFromExcel("Model", i, 2);
+			long epochTime = System.currentTimeMillis();
+			String modelid = Long.toString(epochTime);
+			//String modelid = elib.readDataFromExcel("Model", i, 0);
+			String description = elib.readDataFromExcel("Model", i, 0);
+			String metadata = elib.readDataFromExcel("Model", i, 1);
 			AddBtn.click();
 			Thread.sleep(1000);
 			modelIdTbx.sendKeys(modelid);
@@ -98,6 +103,7 @@ public class ModelPage {
 							+ " " + "" + modelid + "']"))
 					.getText();
 			Assert.assertEquals(modelid, ActualId);
+			elib.writeDataIntoExcel("Asset", i, 10, modelid);
 		}
 		{
 		}

@@ -52,6 +52,10 @@ public class DeviceTest extends BaseClass {
 		devicepage.clickOnAddButton();
 		Thread.sleep(3000);
 	}
+	/**
+	 * this method is used for filter device and get the device name from the device table
+	 * @throws Throwable
+	 */
 	@Test
 	public void filterDeviceTests( ) throws Throwable {
 		// sdriver.manage().window().fullscreen();

@@ -271,6 +271,7 @@ public class DevicePage extends BaseClass {
 		}
 	}
 	/**
+	 * this method is used for filtering 200 latest updated devices
 	 * 
 	 */
 	

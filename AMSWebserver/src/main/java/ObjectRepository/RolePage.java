@@ -12,26 +12,31 @@ import org.testng.Assert;
 import GenericLibrary.ExcelFileUtility;
 import GenericLibrary.WebDriverUtility;
 
-public class LocationTypePage {
+public class RolePage {
 	WebDriverUtility wlib = new WebDriverUtility();
 	ExcelFileUtility elib = new ExcelFileUtility();
 	@FindBy(xpath = "//mat-icon[text()='add']")
 	private WebElement AddBtn;
-	@FindBy(xpath = "//input[@ng-reflect-name='location_type_id']")
-	private WebElement locationTypeIdTbx;
+	@FindBy(xpath = "//input[@ng-reflect-name='role_id']")
+	private WebElement modelIdTbx;
 	@FindBy(xpath = "//input[@ng-reflect-name='Description']")
 	private WebElement descriptionTbx;
 	@FindBy(xpath = "//input[@ng-reflect-name='Metadata']")
 	private WebElement MetaDataTbx;
+	@FindBy(xpath = "//input[@ng-reflect-name='time_mult']")
+	private WebElement timeMultiplerTbx;
 	@FindBy(xpath = "//span[text()='Cancel']")
 	private WebElement cancelBtn;
-	@FindBy(xpath = "//span[text()='This LocationTypeID already exists']")
+	@FindBy(xpath = "//span[text()='This ModelID already exists']")
 	private WebElement errorMsg;
 //	@FindBy(xpath = "(//button[@ng-reflect-disabled='false'])[2]")
 //	private WebElement saveBtn ;
 	@FindBy(xpath = "//span[.='Save']")
 	private WebElement saveBtn;
-	public LocationTypePage(WebDriver driver) {
+	@FindBy(xpath = "//mat-icon[text()='refresh']")
+	private WebElement refreshBtn;
+
+	public RolePage(WebDriver driver) {
 		PageFactory.initElements(driver, this);
 	}
 
@@ -47,8 +52,8 @@ public class LocationTypePage {
 		return AddBtn;
 	}
 
-	public WebElement getLocationTypeIdTbx() {
-		return locationTypeIdTbx;
+	public WebElement getModelIdTbx() {
+		return modelIdTbx;
 	}
 
 	public WebElement getDescriptionTbx() {
@@ -62,7 +67,7 @@ public class LocationTypePage {
 	public WebElement getSaveBtn() {
 		return saveBtn;
 	}
-
+     
 	public WebElement getCancelBtn() {
 		return cancelBtn;
 	}
@@ -71,21 +76,23 @@ public class LocationTypePage {
 		return errorMsg;
 	}
 
-	public void addLocationType(WebDriver driver) throws IOException, Throwable {
+	public void addRole(WebDriver driver) throws IOException, Throwable {
 		wlib.waitForPageLoad(driver);
-		int count = elib.getRowCount("LocationType");
+		int count = elib.getRowCount("Role");
+		System.out.println(count);
 		for (int i = 1; i <= count; i++) {
 			long epochTime = System.currentTimeMillis();
-			String locationTypeid = Long.toString(epochTime);
-			// String locationTypeid = elib.readDataFromExcel("LocationType", i, 0);
-			String description = elib.readDataFromExcel("LocationType", i, 0);
-			String metadata = elib.readDataFromExcel("LocationType", i, 1);
+			String roleid = Long.toString(epochTime);
+			//String roleid = elib.readDataFromExcel("Model", i, 0);
+			String description = elib.readDataFromExcel("Role", i, 0);
+			String metadata = elib.readDataFromExcel("Role", i, 1);
+			String timeMultiplier = elib.readDataFromExcel("Role", i, 2);
 			AddBtn.click();
-			elib.writeDataIntoExcel("Location", i, 5,locationTypeid);
 			Thread.sleep(1000);
-			locationTypeIdTbx.sendKeys(locationTypeid);
+			modelIdTbx.sendKeys(roleid);
 			descriptionTbx.sendKeys(description);
 			MetaDataTbx.sendKeys(metadata);
+			timeMultiplerTbx.sendKeys(timeMultiplier);
 			try {
 				saveBtn.click();
 				}
@@ -94,15 +101,20 @@ public class LocationTypePage {
 					String duplicateID = errorMsg.getText();
 					wlib.scrollAction(driver,cancelBtn);
 					cancelBtn.click();
-					System.out.println(locationTypeid+" "+duplicateID);
+					System.out.println(roleid+" "+duplicateID);
 					
 			    }
+			refreshBtn.click();
 			String ActualId = driver.findElement(By.xpath(
-					"//mat-cell[@class='mat-cell cdk-cell cdk-column-location_type_id mat-column-location_type_id ng-star-inserted' and text()='"
-							+ " " + "" + locationTypeid + "']"))
+					"//mat-cell[@class='mat-cell cdk-cell cdk-column-role_id mat-column-role_id ng-star-inserted' and text()='"
+							+ " " + "" + roleid + "']"))
 					.getText();
-			Assert.assertEquals(locationTypeid, ActualId);
-			elib.writeDataIntoExcel("Location", i, 5, locationTypeid);
+			Assert.assertEquals(roleid, ActualId);
+			elib.writeDataIntoExcel("User", i, 14, roleid);
+		}
+		{
 		}
 	}
 }
+
+

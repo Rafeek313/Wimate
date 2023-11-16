@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import org.testng.Reporter;
 
 import GenericLibrary.ExcelFileUtility;
 import GenericLibrary.WebDriverUtility;
@@ -27,8 +28,10 @@ public class PriorityPage {
 	private WebElement cancelBtn;
 	@FindBy(xpath = "//span[text()='This PriorityID already exists']")
 	private WebElement errorMsg;
-	@FindBy(xpath = "(//button[@ng-reflect-disabled='false'])[2]")
-	private WebElement saveBtn ;
+//	@FindBy(xpath = "(//button[@ng-reflect-disabled='false'])[2]")
+//	private WebElement saveBtn ;
+	@FindBy(xpath = "//span[.='Save']")
+	private WebElement saveBtn;
  public PriorityPage(WebDriver driver)
  {
 	 PageFactory.initElements(driver, this);
@@ -65,9 +68,11 @@ public class PriorityPage {
 		wlib.waitForPageLoad(driver);
 		int count = elib.getRowCount("Priority");
 		for (int i = 1; i <= count; i++) {
-			String priorityid = elib.readDataFromExcel("Priority", i, 0);
-			String description = elib.readDataFromExcel("Priority", i, 1);
-			String metadata = elib.readDataFromExcel("Priority", i, 2);
+			long epochTime = System.currentTimeMillis();
+			String priorityid = Long.toString(epochTime);
+			//String priorityid = elib.readDataFromExcel("Priority", i, 0);
+			String description = elib.readDataFromExcel("Priority", i, 0);
+			String metadata = elib.readDataFromExcel("Priority", i, 1);
 			AddBtn.click();
 			Thread.sleep(1000);
 			priorityIdTbx.sendKeys(priorityid);
@@ -89,6 +94,8 @@ public class PriorityPage {
 							+ " " + "" + priorityid + "']"))
 					.getText();
 			Assert.assertEquals(priorityid, ActualId);
+			elib.writeDataIntoExcel("Problem", i, 9, priorityid);
+			Reporter.log(priorityid+"priority id added successfully",true);
 		}
 	}
 }

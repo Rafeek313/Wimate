@@ -24,9 +24,11 @@ public class DepartmentPage {
 	private WebElement descriptionTbx;
 	@FindBy (xpath="//input[@ng-reflect-name='Metadata']")
 	private WebElement metadataTbx;
-	@FindBy(xpath = "(//button[@ng-reflect-disabled='false'])[2]")
-	private WebElement saveBtn ;
-	@FindBy(xpath = "//span[text()='This DepartmentID already exists']")
+	//@FindBy(xpath = "//span[@class='mat-button-wrapper' and text()='Save']")
+	//private WebElement saveBtn ;
+	@FindBy(xpath = "//span[.='Save']")
+	private WebElement saveBtn;
+	@FindBy(xpath = "//span[contains(text(),'already')]")
 	private WebElement errorMsg;
 	@FindBy(xpath = "//span[text()='Cancel']")
 	private WebElement cancelBtn;
@@ -74,16 +76,19 @@ public class DepartmentPage {
 		wlib.waitForPageLoad(driver);
 		int count = elib.getRowCount("Department");
 		for(int i=1;i<=count;i++) {
-		String departmentid = elib.readDataFromExcel("Department", i, 0);
-		String description = elib.readDataFromExcel("Department", i, 1);
-		String Metadata = elib.readDataFromExcel("Department", i, 2);
+			long epochTime = System.currentTimeMillis();
+			String departmentid = Long.toString(epochTime);
+		//String departmentid = elib.readDataFromExcel("Department", i, 0);
+		String description = elib.readDataFromExcel("Department", i, 0);
+		String Metadata = elib.readDataFromExcel("Department", i, 1);
 		AddBtn.click();
 		Thread.sleep(2000);
 		departmentID.sendKeys(departmentid);
 		descriptionTbx.sendKeys(description);
 		metadataTbx.sendKeys(Metadata);
 		try {
-		saveBtn.click();
+			wlib.waitForElementToBePresent(driver, saveBtn);
+		      saveBtn.click();
 		}
 		catch(Exception e)
 		{ 
@@ -95,6 +100,11 @@ public class DepartmentPage {
 	    }
 		String ActualId = driver.findElement(By.xpath("//mat-cell[@class=\"mat-cell cdk-cell cdk-column-dept_id mat-column-dept_id ng-star-inserted\" and text()='"+" "+""+departmentid+"']")).getText();
 		Assert.assertEquals(departmentid, ActualId);
+		elib.writeDataIntoExcel("User", i, 12,departmentid);
+		elib.writeDataIntoExcel("Asset", i, 1, departmentid);
+		String dept = elib.readDataFromExcel("Asset", i, 1);
+		System.out.println(dept);
+		
 		
 		
 	}

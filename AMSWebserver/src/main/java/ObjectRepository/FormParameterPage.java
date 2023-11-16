@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import org.testng.Reporter;
 
 import GenericLibrary.ExcelFileUtility;
 import GenericLibrary.WebDriverUtility;
@@ -178,15 +179,18 @@ public class FormParameterPage {
 		wlib.waitForPageLoad(driver);
 		int rowcount = elib.getRowCount("FormParameterData");
 		System.out.println(rowcount);
+		String[] formparameters = new String[rowcount];
 		for (int i = 1; i <= rowcount; i++) {
-			String parameterId = elib.readDataFromExcel("FormParameterData", i, 0);
-			String parameterLabel = elib.readDataFromExcel("FormParameterData", i, 1);
-			String parameterDesc = elib.readDataFromExcel("FormParameterData", i, 2);
-			String parameterType = elib.readDataFromExcel("FormParameterData", i, 3);
-			String requiredField = elib.readDataFromExcel("FormParameterData", i, 4);
-			String listoption = elib.readDataFromExcel("FormParameterData", i, 5);
-			String minvalue = elib.readDataFromExcel("FormParameterData", i, 6);
-			String maxvalue = elib.readDataFromExcel("FormParameterData", i, 7);
+			long epochTime = System.currentTimeMillis();
+			String parameterId = Long.toString(epochTime);
+			//String parameterId = elib.readDataFromExcel("FormParameterData", i, 0);
+			String parameterLabel = elib.readDataFromExcel("FormParameterData", i, 0);
+			String parameterDesc = elib.readDataFromExcel("FormParameterData", i, 1);
+			String parameterType = elib.readDataFromExcel("FormParameterData", i, 2);
+			String requiredField = elib.readDataFromExcel("FormParameterData", i, 3);
+			String listoption = elib.readDataFromExcel("FormParameterData", i, 4);
+			String minvalue = elib.readDataFromExcel("FormParameterData", i, 5);
+			String maxvalue = elib.readDataFromExcel("FormParameterData", i, 6);
 
 			addicon.click();
 			Thread.sleep(1000);
@@ -244,6 +248,7 @@ public class FormParameterPage {
 			if (disabletxt.equals("false")) {
 				Thread.sleep(1000);
 				saveBtn.click();
+				Thread.sleep(1000);
 				refreshbtn.click();
 				searchBtn.clear();
 				searchBtn.sendKeys(parameterId);
@@ -257,8 +262,10 @@ public class FormParameterPage {
 					Assert.assertTrue(false);
 				}
 				// Assert.assertEquals(Expecteddata, ActualData);
+				formparameters[i-1]=parameterId;
 				System.out.println(parameterId + " Added successfully");
-			} else {
+			} 
+			else {
 				Thread.sleep(1000);
 				cancelbtn.click();
 				refreshbtn.click();
@@ -272,15 +279,30 @@ public class FormParameterPage {
 				// Assert.assertEquals(Expecteddata, ActualData);
 				if (Expecteddata.contains(ActualData)) {
 					Assert.assertTrue(true);
+					Reporter.log("parameterid="+parameterId,true);
+					
 				} else {
 					Assert.assertTrue(false);
 				}
 
 				System.out.println(parameterId + " Already exist");
 
-			}
+			}	
 
 		}
+		// this method used to add all form parameter into the formtype  excel sheet with seperation of comma
+					StringBuilder result = new StringBuilder();
+
+			        for (int i = 0; i < formparameters.length; i++) {
+			            result.append(formparameters[i]);
+			            if (i < formparameters.length - 1) {
+			                result.append(", ");
+			            }
+			        }
+
+			        elib.writeDataIntoExcel("FormTypedata", 1, 7, result.toString());
+			       String fp = elib.readDataFromExcel("FormTypedata", 1, 7);
+			       System.out.println("form-parameter:"+fp);
 
 	}
 

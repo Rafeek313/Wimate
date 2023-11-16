@@ -6,11 +6,13 @@
 	<description>AMS webserver project</description>
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
-			<version>3.141.59</version>
+			<version>4.11.0</version>
 		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/org.testng/testng -->
 		<!-- https://mvnrepository.com/artifact/org.testng/testng -->
 		<dependency>
@@ -33,11 +35,6 @@
 			<version>4.1.2</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
-		<dependency>
-			<groupId>io.github.bonigarcia</groupId>
-			<artifactId>webdrivermanager</artifactId>
-			<version>5.3.1</version>
-		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.hamcrest/java-hamcrest -->
 		<dependency>
 			<groupId>org.hamcrest</groupId>

@@ -22,9 +22,13 @@ public class HomePage {
 	private WebElement formUserPermissionbtn;
 	@FindBy(xpath = "//img[@alt='User']")
 	private WebElement profileicon;
-	@FindBy(xpath = "(//a[@href='javascript:void(0);'])[4]")
+	@FindBy(xpath = "//app-feather-icons[@ng-reflect-icon='log-out']")
 	private WebElement logoutbtn;
-	@FindBy(xpath = "//span[text()='Configuration ']")
+	//@FindBy(xpath = "//*[@class='sidebar' and //span[text()='Configuration ']] ")
+	@FindBy(xpath = "	//*[@class='menu-top menu-toggle ng-star-inserted']/span[text()='Configuration ']")
+	//(//*[@class='menu-top menu-toggle ng-star-inserted'])[6]
+	//@FindBy(xpath = "//a[@class='menu-top menu-toggle ng-star-inserted toggled']")
+	//@FindBy(xpath = "//span[@class=\"hide-menu\" and text()='Configuration ']")
 	private WebElement configButton;
 	@FindBy(xpath = "//a[text()=' Department ']")
 	private WebElement DepBtn;
@@ -34,8 +38,14 @@ public class HomePage {
 	private WebElement assetMapbtn;
 	@FindBy(xpath = "//a[text()=' Manufacturer ']")
 	private WebElement manufacturebtn;
+	@FindBy(xpath = "//a[contains(text(),'Vendor')]")
+	private WebElement vcbtn;
 	@FindBy(xpath = "//a[text()=' Model ']")
 	private WebElement modelbtn;
+	@FindBy(xpath = "(//a[text()=' Role '])[2]")
+	private WebElement rolebtn;
+	@FindBy(xpath = "//a[contains(text(),'Mqtt')]")
+	private WebElement mqttbtn;
 	@FindBy(xpath = "//a[text()=' Priority ']")
 	private WebElement prioritybtn;
 	@FindBy(xpath = "//a[text()=' Location Type ']")
@@ -142,7 +152,9 @@ public class HomePage {
 		logoutbtn.click();
 	}
 
-	public void clickonConfigButton() {
+	public void clickonConfigButton(WebDriver driver) {
+		wlib.fullscreenWindow(driver);
+		wlib.waitForPageLoad(driver);
 		configButton.click();
 	}
 
@@ -189,6 +201,19 @@ public class HomePage {
 	public void clickonModelButton(WebDriver driver) throws InterruptedException {
 		wlib.maximizeWindow(driver);
 		wlib.specificScrollAction(driver, modelbtn);
+
+	}
+	/**
+	 * this method is used for click on Model option and action class used for
+	 * scroll to the specific element
+	 * 
+	 * @param driver
+	 * @throws InterruptedException
+	 * @author rafeek
+	 */
+	public void clickonRoleButton(WebDriver driver) throws InterruptedException {
+		wlib.maximizeWindow(driver);
+		wlib.specificScrollAction(driver, rolebtn);
 
 	}
 
@@ -272,5 +297,42 @@ public class HomePage {
 		wlib.maximizeWindow(driver);
 		wlib.specificScrollAction(driver, assetbtn);
 	}
+	/**
+	 * this method is used for click on location option and action class used for
+	 * scroll to the specific element
+	 * 
+	 * @param driver
+	 * @throws InterruptedException
+	 * @author rafeek
+	 */
+	public void clickonVendorCompanyButton(WebDriver driver) throws InterruptedException {
+		wlib.maximizeWindow(driver);
+		wlib.specificScrollAction(driver, vcbtn);
 
+	}
+	
+	/**
+	 * this method is used for click on Asset option and action class used for scroll
+	 * to the specific element
+	 * 
+	 * @param driver
+	 * @throws InterruptedException
+	 * @author rafeek
+	 */
+	public void clickonProblemButton(WebDriver driver) throws InterruptedException {
+		wlib.maximizeWindow(driver);
+		wlib.specificScrollAction(driver, Problembtn);
+	}
+	/**
+	 * this method is used for click on Mqtt option and action class used for scroll
+	 * to the specific element
+	 * 
+	 * @param driver
+	 * @throws InterruptedException
+	 * @author rafeek
+	 */
+	public void clickonMqttButton(WebDriver driver) throws InterruptedException {
+		wlib.maximizeWindow(driver);
+		wlib.specificScrollAction(driver, mqttbtn);
+	}
 }

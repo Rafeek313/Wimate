@@ -6,8 +6,8 @@
       <class name="DeviceTest.DeviceTest">
         <methods>
           <include name="launchBrowser"/>
+          <include name="AddingDeviceTests"/>
           <include name="login"/>
-          <include name="verifyDYDB"/>
         </methods>
       </class> <!-- DeviceTest.DeviceTest -->
     </classes>

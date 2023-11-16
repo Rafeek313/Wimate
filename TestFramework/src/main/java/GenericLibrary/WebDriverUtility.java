@@ -306,5 +306,21 @@ public class WebDriverUtility {
 		js.executeScript("window.scrollBy(0," + y + ")", element);
 		// js.executeScript("argument[0].scrollIntoView()",element);
 	}
-
+	
+	// WebElement table = driver.findElement(By.id("tableId"));
+	// WebElement scrollableElement = table.findElement(By.xpath("//div[contains(@class, 'scrollable-element-class')]"));
+	/**
+	 * this method will scroll the specific element inside the table(ex: edit option in user table)
+	 * @param driver
+	 * @param table
+	 * @param scrollableElement
+	 * @author rafeek
+	 * 
+	 */
+public void scrolltable(WebDriver driver, WebElement table,WebElement scrollableElement)
+{
+	Actions actions = new Actions(driver);
+	actions.moveToElement(scrollableElement);
+	actions.clickAndHold().moveByOffset(-100, 0).release().perform();
+}
 }

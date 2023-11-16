@@ -35,10 +35,15 @@ public class LocationPage {
 	private WebElement MetaDataTbx;
 	@FindBy(xpath = "//span[text()='Cancel']")
 	private WebElement cancelBtn;
-	@FindBy(xpath = "//span[text()='This LocationID already exists']")
+	@FindBy(xpath = "//span[contains(text(),'already')]")
 	private WebElement errorMsg;
-	@FindBy(xpath = "(//button[@ng-reflect-disabled='false'])[2]")
+//	@FindBy(xpath = "(//button[@ng-reflect-disabled='false'])[2]")
+//	private WebElement saveBtn;
+	@FindBy(xpath = "//span[.='Save']")
 	private WebElement saveBtn;
+	@FindBy(xpath = "//mat-icon[text()='refresh']")
+	private WebElement refreshBtn;
+	
 
 	public LocationPage(WebDriver driver) {
 		PageFactory.initElements(driver, this);
@@ -106,15 +111,16 @@ public class LocationPage {
 		System.out.println(count);
 
 		for (int i = 1; i <= count; i++) {
-
+			long epochTime = System.currentTimeMillis();
+			String locationid = Long.toString(epochTime);
 			// Reading all field data from excel
-			locationid = elib.readDataFromExcel("Location", i, 0);
-			String lattitude = elib.readDataFromExcel("Location", i, 1);
-			String longitude = elib.readDataFromExcel("Location", i, 2);
-			String gmtDiffrence = elib.readDataFromExcel("Location", i, 3);
-			String metadata = elib.readDataFromExcel("Location", i, 4);
-			String locationName = elib.readDataFromExcel("Location", i, 5);
-			String locationTypeId = elib.readDataFromExcel("Location", i, 6);
+			//locationid = elib.readDataFromExcel("Location", i, 0);
+			String lattitude = elib.readDataFromExcel("Location", i, 0);
+			String longitude = elib.readDataFromExcel("Location", i, 1);
+			String gmtDiffrence = elib.readDataFromExcel("Location", i, 2);
+			String metadata = elib.readDataFromExcel("Location", i, 3);
+			String locationName = elib.readDataFromExcel("Location", i, 4);
+			String locationTypeId = elib.readDataFromExcel("Location", i, 5);
 			// click on Add new button
 
 			AddBtn.click();
@@ -139,7 +145,7 @@ public class LocationPage {
 			locationIdDrpDwn.click();
 			// dynamic xpath for location id webelement
 			WebElement locationTypeWe = driver
-					.findElement(By.xpath("//span[text()='" + " " + "" + locationTypeId + "" + " " + "']"));
+					.findElement(By.xpath("//span[contains(text(),'" + " " + "" + locationTypeId + "" + " " + "')]"));
 			// scroll action for the dynamic location id webelement
 			wlib.scrollAction(driver, locationTypeWe);
 			// click on specific location id webelement
@@ -156,11 +162,15 @@ public class LocationPage {
 				System.out.println(locationid + " " + duplicateID);
 
 			}
-			String ActualId = driver.findElement(By.xpath(
-					"//mat-cell[@class='mat-cell cdk-cell cdk-column-location_id mat-column-location_id ng-star-inserted' and text()='"
-							+ " " + "" + locationid + "']"))
-					.getText();
+			//String ActualId = driver.findElement(By.xpath(
+				//	"//mat-cell[@class='mat-cell cdk-cell cdk-column-location_id mat-column-location_id ng-star-inserted' and text()='"
+				//			+ " " + "" + locationid + "']"))
+					//.getText();
+			Thread.sleep(1000);
+			refreshBtn.click();
+			String ActualId= driver.findElement(By.xpath("//mat-cell[@class='mat-cell cdk-cell cdk-column-location_id mat-column-location_id ng-star-inserted' and text()='"+" "+""+locationid+"']")).getText();
 			Assert.assertEquals(locationid, ActualId);
+			elib.writeDataIntoExcel("Asset", i, 6, locationid);
 			System.out.println(locationid + " added successfully");
 
 		}
