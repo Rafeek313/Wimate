@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2023-05-03T11:12:16 IST" name="Default suite" finished-at="2023-05-03T11:13:00 IST" duration-ms="44547">
+    <groups>
+    </groups>
+    <test started-at="2023-05-03T11:12:16 IST" name="Default test" finished-at="2023-05-03T11:13:00 IST" duration-ms="44547">
+      <class name="appiumtests.Caluclatortest">
+        <test-method signature="opentask()[pri:0, instance:appiumtests.Caluclatortest@7e5afaa6]" started-at="2023-05-03T11:12:16 IST" name="opentask" finished-at="2023-05-03T11:13:00 IST" duration-ms="44486" status="FAIL">
+          <exception class="org.openqa.selenium.StaleElementReferenceException">
+            <message>
+              <![CDATA[androidx.test.uiautomator.StaleObjectException
+For documentation on this error, please visit: https://selenium.dev/exceptions/#stale_element_reference
+Build info: version: '4.9.0', revision: 'd7057100a6'
+System info: os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.12.6', java.version: '17.0.5'
+Driver info: io.appium.java_client.android.AndroidDriver
+Command: [5ac9736d-7aed-4076-9305-93a39c1735f2, clickElement {id=00000000-0000-08b7-0000-0edb00000007}]
+Capabilities {appium:appActivity: io.ionic.starter.MainActivity, appium:appPackage: io.ionic.amsv2, appium:databaseEnabled: false, appium:desired: {appActivity: io.ionic.starter.MainActivity, appPackage: io.ionic.amsv2, deviceName: OnePlus Nord2 5G, platformName: ANDROID, platformVersion: 12, udid: 10.0.1.131:5555}, appium:deviceApiLevel: 31, appium:deviceManufacturer: OnePlus, appium:deviceModel: DN2101, appium:deviceName: 10.0.1.131:5555, appium:deviceScreenDensity: 480, appium:deviceScreenSize: 1080x2400, appium:deviceUDID: 10.0.1.131:5555, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:pixelRatio: 3, appium:platformVersion: 12, appium:statBarHeight: 113, appium:takesScreenshot: true, appium:udid: 10.0.1.131:5555, appium:viewportRect: {height: 2132, left: 0, top: 113, width: 1080}, appium:warnings: {}, appium:webStorageEnabled: false, platformName: ANDROID}
+Element: [[AndroidDriver:  on ANDROID (5ac9736d-7aed-4076-9305-93a39c1735f2)] -> xpath: //android.widget.Button[@text='Confirm']]
+Session ID: 5ac9736d-7aed-4076-9305-93a39c1735f2]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.StaleElementReferenceException: androidx.test.uiautomator.StaleObjectException
+For documentation on this error, please visit: https://selenium.dev/exceptions/#stale_element_reference
+Build info: version: '4.9.0', revision: 'd7057100a6'
+System info: os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.12.6', java.version: '17.0.5'
+Driver info: io.appium.java_client.android.AndroidDriver
+Command: [5ac9736d-7aed-4076-9305-93a39c1735f2, clickElement {id=00000000-0000-08b7-0000-0edb00000007}]
+Capabilities {appium:appActivity: io.ionic.starter.MainActivity, appium:appPackage: io.ionic.amsv2, appium:databaseEnabled: false, appium:desired: {appActivity: io.ionic.starter.MainActivity, appPackage: io.ionic.amsv2, deviceName: OnePlus Nord2 5G, platformName: ANDROID, platformVersion: 12, udid: 10.0.1.131:5555}, appium:deviceApiLevel: 31, appium:deviceManufacturer: OnePlus, appium:deviceModel: DN2101, appium:deviceName: 10.0.1.131:5555, appium:deviceScreenDensity: 480, appium:deviceScreenSize: 1080x2400, appium:deviceUDID: 10.0.1.131:5555, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:pixelRatio: 3, appium:platformVersion: 12, appium:statBarHeight: 113, appium:takesScreenshot: true, appium:udid: 10.0.1.131:5555, appium:viewportRect: {height: 2132, left: 0, top: 113, width: 1080}, appium:warnings: {}, appium:webStorageEnabled: false, platformName: ANDROID}
+Element: [[AndroidDriver:  on ANDROID (5ac9736d-7aed-4076-9305-93a39c1735f2)] -> xpath: //android.widget.Button[@text='Confirm']]
+Session ID: 5ac9736d-7aed-4076-9305-93a39c1735f2
+at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:193)
+at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:262)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:543)
+at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:257)
+at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:78)
+at appiumtests.Caluclatortest.opentask(Caluclatortest.java:126)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
+at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
+at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
+at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+at org.testng.TestRunner.privateRun(TestRunner.java:794)
+at org.testng.TestRunner.run(TestRunner.java:596)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+at org.testng.SuiteRunner.run(SuiteRunner.java:276)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+at org.testng.TestNG.runSuites(TestNG.java:1063)
+at org.testng.TestNG.run(TestNG.java:1031)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.StaleElementReferenceException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- opentask -->
+      </class> <!-- appiumtests.Caluclatortest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
