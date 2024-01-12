@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2023-11-14T15:51:47 IST" name="Default suite" finished-at="2023-11-14T15:51:52 IST" duration-ms="4762">
+    <groups>
+    </groups>
+    <test started-at="2023-11-14T15:51:47 IST" name="Default test" finished-at="2023-11-14T15:51:52 IST" duration-ms="4762">
+      <class name="TextlocalSMSBalance">
+        <test-method signature="wwwloginrequest()[pri:0, instance:TextlocalSMSBalance@247d8ae]" started-at="2023-11-14T15:51:47 IST" name="wwwloginrequest" finished-at="2023-11-14T15:51:52 IST" duration-ms="4668" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- wwwloginrequest -->
+        <test-method signature="telemessage()[pri:1, instance:TextlocalSMSBalance@247d8ae]" started-at="2023-11-14T15:51:52 IST" name="telemessage" finished-at="2023-11-14T15:51:52 IST" duration-ms="3" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- telemessage -->
+      </class> <!-- TextlocalSMSBalance -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
