@@ -59,9 +59,9 @@ public class BaseClass {
 		
 	}
 
-//	@AfterClass
-//	public void closebrowser() {
-//		sdriver.quit();
-//	}
+	@AfterClass
+	public void closebrowser() {
+		sdriver.quit();
+	}
 
 }

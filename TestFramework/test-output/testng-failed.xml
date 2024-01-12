@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="DeviceTest.DeviceTest">
+      <class name="DeviceTest.Generate_Hourly_Data">
         <methods>
           <include name="launchBrowser"/>
-          <include name="AddingDeviceTests"/>
           <include name="login"/>
+          <include name="generate_hourly_data_1"/>
         </methods>
-      </class> <!-- DeviceTest.DeviceTest -->
+      </class> <!-- DeviceTest.Generate_Hourly_Data -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

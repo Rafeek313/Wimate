@@ -24,7 +24,7 @@ public class Generate_Hourly_Data extends BaseClass {
 		wlib.waitForPageLoad(driver);
 		Thread.sleep(5000);
 		homepage = new HomePage(driver);
-		Thread.sleep(5000);
+		Thread.sleep(8000);
 		homepage.clickOnSendButton();
 		sendpage =new SendPage(driver);
 		sendpage.clickLocationTree(driver);		

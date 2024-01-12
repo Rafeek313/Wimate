@@ -9,7 +9,7 @@
           <include name="launchBrowser"/>
           <include name="login"/>
           <include name="closebrowser"/>
-          <include name="createMqttbroker"/>
+          <include name="addUser"/>
         </methods>
       </class> <!-- FormTest.FormTest -->
     </classes>

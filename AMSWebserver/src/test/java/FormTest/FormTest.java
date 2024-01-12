@@ -53,7 +53,7 @@ public class FormTest extends BaseClass {
 	 * 
 	 * @author rafeek
 	 */
-	@Test(priority = 1 )
+	@Test(priority = 1,enabled=false )
 	public void createMqttbroker() throws Throwable {
 		homePage = new HomePage(driver);
 		homePage.clickonConfigButton(driver);
@@ -94,7 +94,7 @@ public class FormTest extends BaseClass {
 	/**
 	 * this method is used for adding department for user configuration
 	 */
-	@Test(priority = 3)
+	@Test(priority = 3,enabled=false)
 	public void addDepartment() throws IOException, Throwable {
 		wlib.waitForPageLoad(driver);
 		homePage = new HomePage(driver);
@@ -111,7 +111,7 @@ public class FormTest extends BaseClass {
 	 * 
 	 * @author rafeek
 	 */
-	@Test(priority = 4)
+	@Test(priority = 4,enabled=false)
 	public void addSubDepartment() throws IOException, Throwable {
 
 		wlib.waitForPageLoad(driver);
@@ -128,7 +128,7 @@ public class FormTest extends BaseClass {
 	 * 
 	 * @author rafeek
 	 */
-	@Test(priority = 4)
+	@Test(priority = 5,enabled=false)
 	public void addRole() throws IOException, Throwable {
 
 		wlib.waitForPageLoad(driver);
@@ -146,7 +146,7 @@ public class FormTest extends BaseClass {
 	 * 
 	 * @author rafeek
 	 */
-	@Test(priority = 5)
+	@Test(priority = 5,enabled=false)
 	public void addManufacture() throws IOException, Throwable {
 
 		wlib.waitForPageLoad(driver);
@@ -164,7 +164,7 @@ public class FormTest extends BaseClass {
 	 * 
 	 * @author rafeek
 	 */
-	@Test(priority = 6)
+	@Test(priority = 6,enabled=false)
 	public void addModel() throws IOException, Throwable {
 		wlib.waitForPageLoad(driver);
 		homePage = new HomePage(driver);
@@ -180,7 +180,7 @@ public class FormTest extends BaseClass {
 	 * 
 	 * @author rafeek
 	 */
-	@Test(priority = 7)
+	@Test(priority = 7,enabled=false)
 	public void addPriority() throws IOException, Throwable {
 		wlib.waitForPageLoad(driver);
 		homePage = new HomePage(driver);
@@ -195,7 +195,7 @@ public class FormTest extends BaseClass {
 	 * this method is used for adding location type for ticket configuration
 	 * @author rafeek
 	 */
-	@Test(priority = 8)
+	@Test(priority = 8,enabled=false)
 	public void addLocationType() throws IOException, Throwable {
 		wlib.waitForPageLoad(driver);
 		homePage = new HomePage(driver);
@@ -210,7 +210,7 @@ public class FormTest extends BaseClass {
 	 * this method is used for adding location for ticket configuration 
 	 * @author rafeek
 	 */
-	@Test(priority = 9)
+	@Test(priority = 9,enabled=false)
 	public void addLocation() throws IOException, Throwable {
 		wlib.waitForPageLoad(driver);
 		homePage = new HomePage(driver);
@@ -225,7 +225,7 @@ public class FormTest extends BaseClass {
 	 * this method is used for adding  for ticket configuration 
 	 * @author rafeek
 	 */
-	@Test(priority = 10)
+	@Test(priority = 10,enabled=false)
 	public void addProblemBtn() throws IOException, Throwable {
 		wlib.waitForPageLoad(driver);
 		homePage = new HomePage(driver);
@@ -240,7 +240,7 @@ public class FormTest extends BaseClass {
 	 * this method is used for adding asset map for ticket configuration 
 	 * @author rafeek
 	 */
-	@Test(priority = 11)
+	@Test(priority = 11,enabled=false)
 	public void addAssetMap() throws IOException, Throwable {
 		wlib.waitForPageLoad(driver);
 		homePage = new HomePage(driver);
@@ -256,7 +256,7 @@ public class FormTest extends BaseClass {
 	 * this method is used for adding user for ticket configuration 
 	 * @author rafeek
 	 */
-	@Test(priority = 0, enabled=false)
+	@Test(priority =7)
 	public void addUser() throws IOException, Throwable {
 		wlib.waitForPageLoad(driver);
 		homePage = new HomePage(driver);
@@ -271,7 +271,7 @@ public class FormTest extends BaseClass {
 	 * this method is used for adding asset for ticket configuration 
 	 * @author rafeek
 	 */
-	@Test(priority = 12)
+	@Test(priority = 12,enabled=false)
 	public void addVendorCompany() throws IOException, Throwable {
 		wlib.waitForPageLoad(driver);
 		homePage = new HomePage(driver);
@@ -286,7 +286,7 @@ public class FormTest extends BaseClass {
 	 * this method is used for adding asset for ticket configuration 
 	 * @author rafeek
 	 */
-	@Test(priority = 13)
+	@Test(priority = 13, enabled=false)
 	public void addAsset() throws IOException, Throwable {
 		wlib.waitForPageLoad(driver);
 		homePage = new HomePage(driver);

@@ -133,29 +133,42 @@ public class SendPage extends BaseClass {
 		WebDriverUtility wlib=new WebDriverUtility();
 		ExcelFileUtility elib=new ExcelFileUtility();
 		int count = elib.getRowCount("TestData2");
-		String deviceName = elib.readDataFromExcel("TestData2", 1, 0);
-		String dataType = elib.readDataFromExcel("TestData2", 1, 1);
-		//String repdate = elib.readDataFromExcel("TestData2", count, 2);
 		System.out.println(count);
-		locationbutton.click();
-		searchdevice.sendKeys(deviceName);
-		driver.findElement(By.xpath("//span[@class='node-name ng-binding']/parent::span/parent::span/descendant::span[text()='"+deviceName+"']")).click();
-		okbtn.click();
-		dropdownbtn.click();
-		driver.findElement(By.xpath("//ul[@class='chosen-results']/li[text()='"+dataType+"']")).click();
 		for(int i=1;i<=count;i++)
 		{
 
-			String date = elib.readDataFromExcel("TestData2", i, 2);
-			datebtn.sendKeys(date);
-			generatebtn.click();
-			Thread.sleep(2000);
-			driver.switchTo().alert().accept();
-			Thread.sleep(2000);
-			driver.switchTo().alert().accept();
-			System.out.println(date);
+			String deviceName = elib.readDataFromExcel("TestData2", i, 0);
 
+			String dataType = elib.readDataFromExcel("TestData2", i, 1);
+
+
+			locationbutton.click();
+			
+			if(i>1 && i<=count)
+			{
+				searchdevice.clear();
+				String previousdevicename = elib.readDataFromExcel("TestData2", i-1, 0);
+				searchdevice.sendKeys(previousdevicename);
+				driver.findElement(By.xpath("//span[text()='"+previousdevicename+"']")).click();
+			}	
+				searchdevice.clear();
+				searchdevice.sendKeys(deviceName);
+				driver.findElement(By.xpath("//span[@class='node-name ng-binding']/parent::span/parent::span/descendant::span[text()='"+deviceName+"']")).click();
+				okbtn.click();
+				dropdownbtn.click();
+				driver.findElement(By.xpath("//ul[@class='chosen-results']/li[text()='"+dataType+"']")).click();
+				String date = elib.readDataFromExcel("TestData2", i, 2);
+				datebtn.sendKeys(date);
+				generatebtn.click();
+				Thread.sleep(2000);
+				driver.switchTo().alert().accept();
+				Thread.sleep(2000);
+				driver.switchTo().alert().accept();
+				System.out.println(date);
+				elib.writeDataIntoExcel("TestData2", i, 3, "Generated successfully");
+			}
 		}
+
 		/* reportspage.click();
 		reporttype.click();
 		Thread.sleep(1000);
@@ -182,6 +195,6 @@ public class SendPage extends BaseClass {
 		System.out.println(generatedate); */
 
 
-	}
+	
 
 }
