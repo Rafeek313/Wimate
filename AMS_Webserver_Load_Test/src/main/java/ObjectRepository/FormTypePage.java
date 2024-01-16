@@ -51,10 +51,10 @@ public class FormTypePage {
 	}
 
 	public void loadFormtype(WebDriver driver) throws Throwable {
-		wlib.waitForPageLoad(driver);
+		//wlib.waitForPageLoad(driver);
 		refreshbtn.click();
         wlib.waitForPageLoadTimeOut(driver);
-		//Thread.sleep(10000);
+		Thread.sleep(1000);
 		wlib.waitForElementToBeClickable(driver, rowdata);
 		// Get the text content of the element
 		String itemLength = itemlength.getText();

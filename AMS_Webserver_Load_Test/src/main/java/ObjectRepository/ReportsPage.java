@@ -28,7 +28,7 @@ public class ReportsPage {
 	@FindBy(xpath = "(//div[contains(@class,'mat-select-arrow-wrapper ')])[2]")
 	//@FindBy(xpath = "//div[@class='col-sm ng-star-inserted']/mat-form-field/descendant::mat-label[contains(text(),'Choose me')]")
 	private WebElement choosemeoptionFT;
-	@FindBy(xpath ="//mat-option[@tabindex='0']")
+	@FindBy(xpath ="(//mat-option[@tabindex='0'])[1]")
 	private WebElement firstform;
 	@FindBy(xpath ="//button/span[contains(text(),'Submit Query')]")
 	private WebElement submitquery;
@@ -83,14 +83,14 @@ public class ReportsPage {
 		Reporter.log("Total item of ticket reports table: "+totalItem,true);
 	}
 	public void loadFormTable(WebDriver driver) throws Throwable {
-		wlib.waitForPageLoad(driver);
+		//wlib.waitForPageLoad(driver);
         wlib.waitForPageLoadTimeOut(driver);
         wlib.waitForElementToBeClickable(choosemeoption);
         //choosemeoption.click();
-        Thread.sleep(5000);
         formtype.click();
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         choosemeoptionFT.click();
+        Thread.sleep(1000);
         firstform.click();
         submitquery.click();
         

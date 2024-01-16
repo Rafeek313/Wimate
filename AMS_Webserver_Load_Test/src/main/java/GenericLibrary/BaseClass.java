@@ -77,25 +77,25 @@ public class BaseClass {
 
 	@AfterMethod
 	/**
-	 * this method is used for logout the application
+	 * This method is used for logout the application
 	 * @author rafeek
 	 * @throws InterruptedException
 	 */
 	public void logout() throws InterruptedException {
-		homePage = new HomePage(driver);
-		homePage.logout();
-		Reporter.log("logout successful", true);
+	    homePage = new HomePage(driver);
+	    homePage.logout();
+	    Reporter.log("Logout successful", true);
 	}
 
 	@AfterClass
-/**
- * this method will close the browser
- * @author rafeek
- * @throws InterruptedException
- */
-	public void closebrowser() throws InterruptedException {
-		sdriver.quit();
-		Reporter.log("closed browser successfully", true);
+	/**
+	 * This method will close the browser
+	 * @author rafeek
+	 * @throws InterruptedException
+	 */
+	public void closeBrowser() throws InterruptedException {
+	    sdriver.quit();
+	    Reporter.log("Closed browser successfully", true);
 	}
 
 }

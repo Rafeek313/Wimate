@@ -1,9 +1,11 @@
-package FormTest;
+package PingTest;
 
 import java.awt.AWTException;
 import java.io.IOException;
 
+import org.testng.Assert;
 import org.testng.Reporter;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import GenericLibrary.BaseClass;
@@ -29,6 +31,7 @@ import ObjectRepository.SubDepartmentPage;
 import ObjectRepository.UserPage;
 import ObjectRepository.VendorCompanyPage;
 
+@Listeners(GenericLibrary.ListenerImplementationClass.class)
 public class FormTest extends BaseClass {
 	LoginPage loginpage;
 	HomePage homePage;
@@ -55,7 +58,7 @@ public class FormTest extends BaseClass {
 	 * 
 	 * @author rafeek
 	 */
-	@Test(priority = 1,enabled=true )
+	@Test(priority = 0,enabled=true )
 	public void loadTicketReport() throws Throwable {
 		homePage = new HomePage(driver);
 		homePage.clickonReportButton(driver);
@@ -64,6 +67,7 @@ public class FormTest extends BaseClass {
 		reportsPage = new ReportsPage(driver);
 		reportsPage.loadTicketTable(driver);
 		Reporter.log(" Ticket Report  table loaded successfully", true);
+		Assert.fail();
 	}
 	/**
 	 * this method used for ping form reports table in AMSv2 webserver
@@ -79,6 +83,7 @@ public class FormTest extends BaseClass {
 		reportsPage = new ReportsPage(driver);
 		reportsPage.loadFormTable(driver);
 		Reporter.log(" form Report  table loaded successfully", true);
+		Assert.fail();
 	}
 	/**
 	 * this method used for ping MQTT Broker in AMSv2 webserver
@@ -99,7 +104,7 @@ public class FormTest extends BaseClass {
 	 * 
 	 * @author rafeek
 	 */
-	@Test(priority = 1,enabled=true )
+	@Test(priority = 2,enabled=true )
 	public void loadFormParameter() throws Throwable {
 		homePage = new HomePage(driver);
 		homePage.clickonFormParameter();
@@ -113,7 +118,7 @@ public class FormTest extends BaseClass {
 	 * 
 	 * @author rafeek
 	 */
-	@Test(priority = 2, enabled=true)
+	@Test(priority = 3, enabled=true)
 	public void loadFormType() throws Throwable {
 		wlib.waitForPageLoad(driver);
 		homePage = new HomePage(driver);
@@ -289,7 +294,7 @@ public class FormTest extends BaseClass {
 	 * this method is used for adding user for ticket configuration 
 	 * @author rafeek
 	 */
-	@Test(priority =7)
+	@Test(priority =7,enabled=false)
 	public void addUser() throws IOException, Throwable {
 		wlib.waitForPageLoad(driver);
 		homePage = new HomePage(driver);

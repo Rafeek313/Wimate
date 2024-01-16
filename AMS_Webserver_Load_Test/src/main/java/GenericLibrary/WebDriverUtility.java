@@ -25,7 +25,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class WebDriverUtility {
+public class WebDriverUtility extends JavaUtility{
+	JavaUtility	jlib=new JavaUtility();
 	/**
 	 * this method will maximize the window
 	 * 
@@ -253,19 +254,20 @@ public class WebDriverUtility {
 	}
 
 	/**
-	 * this method will take screenshot and save it in folder as ScreenShot
-	 * 
+	 * this method will take takescreenshot on the webpage
 	 * @param driver
 	 * @param screenShotName
 	 * @throws Throwable
 	 */
-	public String getScreenShot(WebDriver driver, String screenShotName) throws Throwable {
-		String path = "./ScreenShot/" + screenShotName + ".png";
-		TakesScreenshot ts = (TakesScreenshot) driver;
+	public String getScreenShot(WebDriver driver,String screenShotName) throws Throwable {
+		String path = "./Screenshot/"+screenShotName+jlib.getSystemDateAndTime()+".png";
+		TakesScreenshot ts =(TakesScreenshot) driver;
 		File src = ts.getScreenshotAs(OutputType.FILE);
-		File dest = new File(path);
-		Files.copy(src, dest);
-		return dest.getAbsolutePath();
+	 File dest = new File("./Screenshot/"+screenShotName+".png");
+	 Files.copy(src, dest);
+	 
+	 return dest.getAbsolutePath();
+		
 	}
 
 	/**
@@ -337,5 +339,6 @@ public class WebDriverUtility {
 		Actions actions = new Actions(driver);
 		actions.moveToElement(element).clickAndHold().release().perform();
 	}
+	
 
 }
