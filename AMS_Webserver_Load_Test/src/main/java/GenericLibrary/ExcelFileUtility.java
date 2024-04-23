@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
@@ -186,8 +187,12 @@ public class ExcelFileUtility {
 
 	        return values;
 	    }
-	  
-	  
+	  public static String ReadExcel(int row, int cell) throws EncryptedDocumentException, IOException {
+			FileInputStream fl=new FileInputStream(IpathConstants.ExcelPath);
+			Workbook workbook = WorkbookFactory.create(fl);
+			return workbook.getSheet("Report").getRow(row).getCell(cell).getStringCellValue();
+			
+		  } 
 	  
 	  
 

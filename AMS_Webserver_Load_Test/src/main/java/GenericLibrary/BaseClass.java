@@ -1,6 +1,12 @@
 package GenericLibrary;
 
+import GenericLibrary.*;
+
 import java.io.IOException;
+import java.time.LocalDateTime;
+
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -9,8 +15,11 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Reporter;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
 
 import ObjectRepository.HomePage;
 import ObjectRepository.LoginPage;
@@ -74,7 +83,7 @@ public class BaseClass {
 		Reporter.log("login successful", true);
 
 	}
-
+	
 	@AfterMethod
 	/**
 	 * This method is used for logout the application
@@ -97,5 +106,10 @@ public class BaseClass {
 	    sdriver.quit();
 	    Reporter.log("Closed browser successfully", true);
 	}
+	@AfterSuite()
+	public void sentemail() throws AddressException, MessagingException, IOException {
+		// EmailReporterClass report=new EmailReporterClass();
+// report.sendEmailWithAttachments("smtp.gmail.com", "587", "user1.untangleds@gmail.com", "vjfoxtzgjhoqflrd", "rafeek@wimate.in", "Ams webserver Ping Test ,");	
+}
 
 }

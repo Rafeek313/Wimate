@@ -50,11 +50,12 @@ public class FormTypePage {
 		PageFactory.initElements(driver, this);
 	}
 
-	public void loadFormtype(WebDriver driver) throws Throwable {
+	public String loadFormtype(WebDriver driver) throws Throwable {
+        double startTime = System.currentTimeMillis();
 		//wlib.waitForPageLoad(driver);
-		refreshbtn.click();
+		//refreshbtn.click();
         wlib.waitForPageLoadTimeOut(driver);
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
 		wlib.waitForElementToBeClickable(driver, rowdata);
 		// Get the text content of the element
 		String itemLength = itemlength.getText();
@@ -69,5 +70,8 @@ public class FormTypePage {
 		// Verify the actual value is greater than 10 using TestNG assertion
 		Assert.assertTrue(totalItem > 0, "Total items greter than zero");
 		Reporter.log("Total item of formtype table: "+totalItem,true);
+		double endTime = System.currentTimeMillis();
+		   double formparameterloadTimeInSeconds = (endTime - startTime)/1000;
+		return formparameterloadTimeInSeconds+" seconds";
 	}
 }

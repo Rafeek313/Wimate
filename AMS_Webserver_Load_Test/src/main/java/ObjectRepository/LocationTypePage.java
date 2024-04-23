@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import org.testng.Reporter;
 
 import GenericLibrary.ExcelFileUtility;
 import GenericLibrary.WebDriverUtility;
@@ -15,26 +16,15 @@ import GenericLibrary.WebDriverUtility;
 public class LocationTypePage {
 	WebDriverUtility wlib = new WebDriverUtility();
 	ExcelFileUtility elib = new ExcelFileUtility();
-	@FindBy(xpath = "//mat-icon[text()='add']")
-	private WebElement AddBtn;
-	@FindBy(xpath = "//input[@ng-reflect-name='location_type_id']")
-	private WebElement locationTypeIdTbx;
-	@FindBy(xpath = "//input[@ng-reflect-name='Description']")
-	private WebElement descriptionTbx;
-	@FindBy(xpath = "//input[@ng-reflect-name='Metadata']")
-	private WebElement MetaDataTbx;
-	@FindBy(xpath = "//span[text()='Cancel']")
-	private WebElement cancelBtn;
-	@FindBy(xpath = "//span[text()='This LocationTypeID already exists']")
-	private WebElement errorMsg;
-//	@FindBy(xpath = "(//button[@ng-reflect-disabled='false'])[2]")
-//	private WebElement saveBtn ;
-	@FindBy(xpath = "//span[.='Save']")
-	private WebElement saveBtn;
+	@FindBy(xpath = "//mat-icon[text()='refresh']")
+	private WebElement refreshbtn;
+	@FindBy(xpath = "//mat-paginator[@class='mat-paginator']")
+	private WebElement itemlength;
+	@FindBy(xpath = "//mat-row[@role='row']")
+	private WebElement rowdata;
 	public LocationTypePage(WebDriver driver) {
 		PageFactory.initElements(driver, this);
 	}
-
 	public WebDriverUtility getWlib() {
 		return wlib;
 	}
@@ -43,66 +33,42 @@ public class LocationTypePage {
 		return elib;
 	}
 
-	public WebElement getAddBtn() {
-		return AddBtn;
-	}
 
-	public WebElement getLocationTypeIdTbx() {
-		return locationTypeIdTbx;
+	public WebElement getRefreshbtn() {
+		return refreshbtn;
 	}
+	public WebElement getItemlength() {
+		return itemlength;
+	}
+	public WebElement getRowdata() {
+		return rowdata;
+	}
+	/** 
+	 * this method is used for loading  and ping testing   Location Type table  in the ticket configuration
+	 * @author rafeek
+	 */
+	public String loadLocationTypeTable(WebDriver driver) throws IOException, Throwable {
+		double startTime = System.currentTimeMillis();
+		//wlib.waitForPageLoad(driver);
+		//refreshbtn.click();
+        wlib.waitForPageLoadTimeOut(driver);
+		//Thread.sleep(1000);
+		wlib.waitForElementToBeClickable(driver, rowdata);
+		// Get the text content of the element
+		String itemLength = itemlength.getText();
 
-	public WebElement getDescriptionTbx() {
-		return descriptionTbx;
-	}
+		// Extract the numeric value from the text (assuming it is always in the format "x – y of z.")
+		String[] parts = itemLength.split(" ");
+		String iL = parts[parts.length - 1];
 
-	public WebElement getMetaDataTbx() {
-		return MetaDataTbx;
-	}
+		// Convert the numeric value to an integer
+		int totalItem = Integer.parseInt(iL);
 
-	public WebElement getSaveBtn() {
-		return saveBtn;
-	}
-
-	public WebElement getCancelBtn() {
-		return cancelBtn;
-	}
-
-	public WebElement getErrorMsg() {
-		return errorMsg;
-	}
-
-	public void addLocationType(WebDriver driver) throws IOException, Throwable {
-		wlib.waitForPageLoad(driver);
-		int count = elib.getRowCount("LocationType");
-		for (int i = 1; i <= count; i++) {
-			long epochTime = System.currentTimeMillis();
-			String locationTypeid = Long.toString(epochTime);
-			// String locationTypeid = elib.readDataFromExcel("LocationType", i, 0);
-			String description = elib.readDataFromExcel("LocationType", i, 0);
-			String metadata = elib.readDataFromExcel("LocationType", i, 1);
-			AddBtn.click();
-			elib.writeDataIntoExcel("Location", i, 5,locationTypeid);
-			Thread.sleep(1000);
-			locationTypeIdTbx.sendKeys(locationTypeid);
-			descriptionTbx.sendKeys(description);
-			MetaDataTbx.sendKeys(metadata);
-			try {
-				saveBtn.click();
-				}
-				catch(Exception e)
-				{ 
-					String duplicateID = errorMsg.getText();
-					wlib.scrollAction(driver,cancelBtn);
-					cancelBtn.click();
-					System.out.println(locationTypeid+" "+duplicateID);
-					
-			    }
-			String ActualId = driver.findElement(By.xpath(
-					"//mat-cell[@class='mat-cell cdk-cell cdk-column-location_type_id mat-column-location_type_id ng-star-inserted' and text()='"
-							+ " " + "" + locationTypeid + "']"))
-					.getText();
-			Assert.assertEquals(locationTypeid, ActualId);
-			elib.writeDataIntoExcel("Location", i, 5, locationTypeid);
-		}
-	}
+		// Verify the actual value is greater than 10 using TestNG assertion
+		Assert.assertTrue(totalItem > 0, "Total items greter than zero");
+		Reporter.log("Total item of Location Type table: "+totalItem,true);
+		double endTime = System.currentTimeMillis();
+		   double locationtypeloadTimeInSeconds = (endTime - startTime)/1000;
+		return locationtypeloadTimeInSeconds+" seconds";	
+	    }
 }

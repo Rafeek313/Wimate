@@ -40,9 +40,10 @@ public class FormParameterPage {
 		return itemlength;
 	}
 
-	public void LoadFormParameter(WebDriver driver) throws Throwable {
+	public String LoadFormParameter(WebDriver driver) throws Throwable {
+        double startTime = System.currentTimeMillis();
 		wlib.waitForPageLoad(driver);
-		refreshbtn.click();
+		//refreshbtn.click();
 		wlib.waitForElementToBeClickable(driver, rowdata);
 
 		// Get the text content of the element
@@ -58,6 +59,9 @@ public class FormParameterPage {
 		// Verify the actual value is greater than 10 using TestNG assertion
 		Assert.assertTrue(totalItem > 0, "Total items greater than zero");
 		Reporter.log("Total item of form parameter table: "+totalItem,true);
+		double endTime = System.currentTimeMillis();
+		   double formparameterloadTimeInSeconds = (endTime - startTime)/1000;
+		return formparameterloadTimeInSeconds+" seconds";
 
 
 	}

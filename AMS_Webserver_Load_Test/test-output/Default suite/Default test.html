@@ -55,11 +55,11 @@ function toggleAllBoxes() {
 <body>
 <h2 align='center'>Default test</h2><table border='1' align="center">
 <tr>
-<td>Tests passed/Failed/Skipped:</td><td>2/2/0</td>
+<td>Tests passed/Failed/Skipped:</td><td>17/0/0</td>
 </tr><tr>
-<td>Started on:</td><td>Mon Jan 15 18:23:19 IST 2024</td>
+<td>Started on:</td><td>Tue Apr 23 16:46:35 IST 2024</td>
 </tr>
-<tr><td>Total time:</td><td>34 seconds (34864 ms)</td>
+<tr><td>Total time:</td><td>103 seconds (103054 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -67,172 +67,6 @@ function toggleAllBoxes() {
 </tr>
 </table><p/>
 <small><i>(Hover the method name to see the test class name)</i></small><p/>
-<table width='100%' border='1' class='invocation-failed'>
-<tr><td colspan='4' align='center'><b>FAILED TESTS</b></td></tr>
-<tr><td><b>Test method</b></td>
-<td width="30%"><b>Exception</b></td>
-<td width="10%"><b>Time (seconds)</b></td>
-<td><b>Instance</b></td>
-</tr>
-<tr>
-<td title='PingTest.FormTest.loadTicketReport()'><b>loadTicketReport</b><br>Test class: PingTest.FormTest<br/>
-<a href="#Output-278986288" onClick='toggleBox("Output-278986288", this, "Show output", "Hide output");'>Show output</a>
-
-<a href="#Output-278986288" onClick="toggleAllBoxes();">Show all outputs</a>
-<div class='log' id="Output-278986288">
-Total item of ticket reports table: 17<br/>
- Ticket Report  table loaded successfully<br/>
-loadTicketReport---- TestScript Failed<br/>
-</div>
-</td>
-<td><div><pre>java.lang.AssertionError: null
-	at org.testng.Assert.fail(Assert.java:99)
-	at org.testng.Assert.fail(Assert.java:106)
-	at PingTest.FormTest.loadTicketReport(FormTest.java:70)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
-	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
-	at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
-	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
-	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
-	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-	at org.testng.TestRunner.privateRun(TestRunner.java:794)
-	at org.testng.TestRunner.run(TestRunner.java:596)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:276)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
-	at org.testng.TestNG.runSuites(TestNG.java:1063)
-	at org.testng.TestNG.run(TestNG.java:1031)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-</pre></div><a href='#' onClick='toggleBox("stack-trace278986288", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace278986288'><pre>java.lang.AssertionError: null
-	at org.testng.Assert.fail(Assert.java:99)
-	at org.testng.Assert.fail(Assert.java:106)
-	at PingTest.FormTest.loadTicketReport(FormTest.java:70)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
-	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
-	at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
-	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
-	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
-	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-	at org.testng.TestRunner.privateRun(TestRunner.java:794)
-	at org.testng.TestRunner.run(TestRunner.java:596)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:276)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
-	at org.testng.TestNG.runSuites(TestNG.java:1063)
-	at org.testng.TestNG.run(TestNG.java:1031)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-</pre></div></td>
-<td>4</td>
-<td>PingTest.FormTest@72035809</td></tr>
-<tr>
-<td title='PingTest.FormTest.loadFormReport()'><b>loadFormReport</b><br>Test class: PingTest.FormTest<br/>
-<a href="#Output-1392482765" onClick='toggleBox("Output-1392482765", this, "Show output", "Hide output");'>Show output</a>
-
-<a href="#Output-1392482765" onClick="toggleAllBoxes();">Show all outputs</a>
-<div class='log' id="Output-1392482765">
-Total item of form reports table: 14<br/>
- form Report  table loaded successfully<br/>
-loadFormReport---- TestScript Failed<br/>
-</div>
-</td>
-<td><div><pre>java.lang.AssertionError: null
-	at org.testng.Assert.fail(Assert.java:99)
-	at org.testng.Assert.fail(Assert.java:106)
-	at PingTest.FormTest.loadFormReport(FormTest.java:86)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
-	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
-	at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
-	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
-	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
-	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-	at org.testng.TestRunner.privateRun(TestRunner.java:794)
-	at org.testng.TestRunner.run(TestRunner.java:596)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:276)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
-	at org.testng.TestNG.runSuites(TestNG.java:1063)
-	at org.testng.TestNG.run(TestNG.java:1031)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-</pre></div><a href='#' onClick='toggleBox("stack-trace1392482765", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace1392482765'><pre>java.lang.AssertionError: null
-	at org.testng.Assert.fail(Assert.java:99)
-	at org.testng.Assert.fail(Assert.java:106)
-	at PingTest.FormTest.loadFormReport(FormTest.java:86)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
-	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
-	at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
-	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
-	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
-	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-	at org.testng.TestRunner.privateRun(TestRunner.java:794)
-	at org.testng.TestRunner.run(TestRunner.java:596)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:276)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
-	at org.testng.TestNG.runSuites(TestNG.java:1063)
-	at org.testng.TestNG.run(TestNG.java:1031)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-</pre></div></td>
-<td>6</td>
-<td>PingTest.FormTest@72035809</td></tr>
-</table><p>
 <table width='100%' border='1' class='invocation-passed'>
 <tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
 <tr><td><b>Test method</b></td>
@@ -241,31 +75,226 @@ loadFormReport---- TestScript Failed<br/>
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='PingTest.FormTest.loadFormParameter()'><b>loadFormParameter</b><br>Test class: PingTest.FormTest<br/>
-<a href="#Output-1360312263" onClick='toggleBox("Output-1360312263", this, "Show output", "Hide output");'>Show output</a>
+<td title='PingTest.FormTests.loadFormTypeTest()'><b>loadFormTypeTest</b><br>Test class: PingTest.FormTests<br>Parameters: org.testng.TestRunner@2cc75074<br/>
+<a href="#Output-25916650" onClick='toggleBox("Output-25916650", this, "Show output", "Hide output");'>Show output</a>
 
-<a href="#Output-1360312263" onClick="toggleAllBoxes();">Show all outputs</a>
-<div class='log' id="Output-1360312263">
-Total item of form parameter table: 17<br/>
+<a href="#Output-25916650" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-25916650">
+Total item of formtype table: 4<br/>
+form type table loaded successfully<br/>
+</div>
+</td>
+<td></td>
+<td>2</td>
+<td>PingTest.FormTests@433defed</td></tr>
+<tr>
+<td title='PingTest.FormTests.loadFormReportTest()'><b>loadFormReportTest</b><br>Test class: PingTest.FormTests<br>Parameters: org.testng.TestRunner@2cc75074<br/>
+<a href="#Output-895259838" onClick='toggleBox("Output-895259838", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-895259838" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-895259838">
+ form Report  table loaded successfully<br/>
+</div>
+</td>
+<td></td>
+<td>5</td>
+<td>PingTest.FormTests@433defed</td></tr>
+<tr>
+<td title='PingTest.FormTests.loadDepartmentTableTest()'><b>loadDepartmentTableTest</b><br>Test class: PingTest.FormTests<br>Parameters: org.testng.TestRunner@2cc75074<br/>
+<a href="#Output-1361009437" onClick='toggleBox("Output-1361009437", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-1361009437" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1361009437">
+Total item of department table: 3<br/>
+department table loaded successfully<br/>
+</div>
+</td>
+<td></td>
+<td>4</td>
+<td>PingTest.FormTests@433defed</td></tr>
+<tr>
+<td title='PingTest.FormTests.loadProblemTableTest()'><b>loadProblemTableTest</b><br>Test class: PingTest.FormTests<br>Parameters: org.testng.TestRunner@2cc75074<br/>
+<a href="#Output-1155337528" onClick='toggleBox("Output-1155337528", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-1155337528" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1155337528">
+Total item of Problem table: 4<br/>
+location  table loaded successfully<br/>
+problem table loaded successfully<br/>
+</div>
+</td>
+<td></td>
+<td>3</td>
+<td>PingTest.FormTests@433defed</td></tr>
+<tr>
+<td title='PingTest.FormTests.loadRoleTableTest()'><b>loadRoleTableTest</b><br>Test class: PingTest.FormTests<br>Parameters: org.testng.TestRunner@2cc75074<br/>
+<a href="#Output-1087279177" onClick='toggleBox("Output-1087279177", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-1087279177" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1087279177">
+Total item of role table: 3<br/>
+role  table loaded successfully<br/>
+</div>
+</td>
+<td></td>
+<td>3</td>
+<td>PingTest.FormTests@433defed</td></tr>
+<tr>
+<td title='PingTest.FormTests.loadMQTTTableTest()'><b>loadMQTTTableTest</b><br>Test class: PingTest.FormTests<br>Parameters: org.testng.TestRunner@2cc75074<br/>
+<a href="#Output-293618119" onClick='toggleBox("Output-293618119", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-293618119" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-293618119">
+Total item of MQTT table: 1<br/>
+mqtt broker table loaded successfully<br/>
+</div>
+</td>
+<td></td>
+<td>2</td>
+<td>PingTest.FormTests@433defed</td></tr>
+<tr>
+<td title='PingTest.FormTests.loadLocationTable()'><b>loadLocationTable</b><br>Test class: PingTest.FormTests<br>Parameters: org.testng.TestRunner@2cc75074<br/>
+<a href="#Output-744541767" onClick='toggleBox("Output-744541767", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-744541767" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-744541767">
+Total item of LocationPage table: 1<br/>
+location  table loaded successfully<br/>
+</div>
+</td>
+<td></td>
+<td>3</td>
+<td>PingTest.FormTests@433defed</td></tr>
+<tr>
+<td title='PingTest.FormTests.loadFormParameterTest()'><b>loadFormParameterTest</b><br>Test class: PingTest.FormTests<br>Parameters: org.testng.TestRunner@2cc75074<br/>
+<a href="#Output-1135936028" onClick='toggleBox("Output-1135936028", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-1135936028" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1135936028">
+Total item of form parameter table: 18<br/>
 form parameter table loaded successfully<br/>
 </div>
 </td>
 <td></td>
 <td>3</td>
-<td>PingTest.FormTest@72035809</td></tr>
+<td>PingTest.FormTests@433defed</td></tr>
 <tr>
-<td title='PingTest.FormTest.loadFormType()'><b>loadFormType</b><br>Test class: PingTest.FormTest<br/>
-<a href="#Output-1339858954" onClick='toggleBox("Output-1339858954", this, "Show output", "Hide output");'>Show output</a>
+<td title='PingTest.FormTests.loadAssetMapTableTest()'><b>loadAssetMapTableTest</b><br>Test class: PingTest.FormTests<br>Parameters: org.testng.TestRunner@2cc75074<br/>
+<a href="#Output-133579455" onClick='toggleBox("Output-133579455", this, "Show output", "Hide output");'>Show output</a>
 
-<a href="#Output-1339858954" onClick="toggleAllBoxes();">Show all outputs</a>
-<div class='log' id="Output-1339858954">
-Total item of formtype table: 28<br/>
-form type table loaded successfully<br/>
+<a href="#Output-133579455" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-133579455">
+Total item of Asset Map table: 4<br/>
+asset map table loaded successfully<br/>
 </div>
 </td>
 <td></td>
 <td>3</td>
-<td>PingTest.FormTest@72035809</td></tr>
+<td>PingTest.FormTests@433defed</td></tr>
+<tr>
+<td title='PingTest.FormTests.loadUserTableTest()'><b>loadUserTableTest</b><br>Test class: PingTest.FormTests<br>Parameters: org.testng.TestRunner@2cc75074<br/>
+<a href="#Output-1166452906" onClick='toggleBox("Output-1166452906", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-1166452906" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1166452906">
+Total item of User table: 6<br/>
+  user table loaded successfully<br/>
+</div>
+</td>
+<td></td>
+<td>4</td>
+<td>PingTest.FormTests@433defed</td></tr>
+<tr>
+<td title='PingTest.FormTests.loadManufactureTableTest()'><b>loadManufactureTableTest</b><br>Test class: PingTest.FormTests<br>Parameters: org.testng.TestRunner@2cc75074<br/>
+<a href="#Output-1577067350" onClick='toggleBox("Output-1577067350", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-1577067350" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1577067350">
+Total item of manufacture table: 1<br/>
+manufacture table loaded successfully<br/>
+</div>
+</td>
+<td></td>
+<td>3</td>
+<td>PingTest.FormTests@433defed</td></tr>
+<tr>
+<td title='PingTest.FormTests.loadFormuserPermissionTest()'><b>loadFormuserPermissionTest</b><br>Test class: PingTest.FormTests<br>Parameters: org.testng.TestRunner@2cc75074<br/>
+<a href="#Output-1848760713" onClick='toggleBox("Output-1848760713", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-1848760713" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1848760713">
+Total item of form user permission table: 5<br/>
+form user permission table loaded successfully<br/>
+</div>
+</td>
+<td></td>
+<td>1</td>
+<td>PingTest.FormTests@433defed</td></tr>
+<tr>
+<td title='PingTest.FormTests.addSubDepartmentTest()'><b>addSubDepartmentTest</b><br>Test class: PingTest.FormTests<br>Parameters: org.testng.TestRunner@2cc75074<br/>
+<a href="#Output-366008009" onClick='toggleBox("Output-366008009", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-366008009" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-366008009">
+Total item of sub department table: 3<br/>
+sub department table loaded successfully<br/>
+</div>
+</td>
+<td></td>
+<td>3</td>
+<td>PingTest.FormTests@433defed</td></tr>
+<tr>
+<td title='PingTest.FormTests.loadModelTableTest()'><b>loadModelTableTest</b><br>Test class: PingTest.FormTests<br>Parameters: org.testng.TestRunner@2cc75074<br/>
+<a href="#Output-52104962" onClick='toggleBox("Output-52104962", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-52104962" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-52104962">
+Total item of Model table: 1<br/>
+model table loaded successfully<br/>
+</div>
+</td>
+<td></td>
+<td>3</td>
+<td>PingTest.FormTests@433defed</td></tr>
+<tr>
+<td title='PingTest.FormTests.loadLocationTypeTableTest()'><b>loadLocationTypeTableTest</b><br>Test class: PingTest.FormTests<br>Parameters: org.testng.TestRunner@2cc75074<br/>
+<a href="#Output-71782942" onClick='toggleBox("Output-71782942", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-71782942" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-71782942">
+Total item of Location Type table: 1<br/>
+location type   table loaded successfully<br/>
+</div>
+</td>
+<td></td>
+<td>4</td>
+<td>PingTest.FormTests@433defed</td></tr>
+<tr>
+<td title='PingTest.FormTests.loadPriorityTableTest()'><b>loadPriorityTableTest</b><br>Test class: PingTest.FormTests<br>Parameters: org.testng.TestRunner@2cc75074<br/>
+<a href="#Output-321795476" onClick='toggleBox("Output-321795476", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-321795476" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-321795476">
+Total item of Priority table: 1<br/>
+priority table loaded successfully<br/>
+</div>
+</td>
+<td></td>
+<td>3</td>
+<td>PingTest.FormTests@433defed</td></tr>
+<tr>
+<td title='PingTest.FormTests.loadTicketReportTest()'><b>loadTicketReportTest</b><br>Test class: PingTest.FormTests<br>Parameters: org.testng.TestRunner@2cc75074<br/>
+<a href="#Output-914293025" onClick='toggleBox("Output-914293025", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-914293025" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-914293025">
+Total item of ticket reports table: 19<br/>
+ Ticket Report  table loaded successfully<br/>
+</div>
+</td>
+<td></td>
+<td>5</td>
+<td>PingTest.FormTests@433defed</td></tr>
 </table><p>
 </body>
 </html>

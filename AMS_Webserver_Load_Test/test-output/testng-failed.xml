@@ -3,16 +3,16 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="PingTest.FormTest">
+      <class name="PingTest.FormTests">
         <methods>
+          <include name="loadFormReportTest"/>
+          <include name="sentemail"/>
           <include name="logout"/>
           <include name="closeBrowser"/>
           <include name="launchBrowser"/>
-          <include name="loadTicketReport"/>
           <include name="login"/>
-          <include name="loadFormReport"/>
         </methods>
-      </class> <!-- PingTest.FormTest -->
+      </class> <!-- PingTest.FormTests -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

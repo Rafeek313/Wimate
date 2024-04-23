@@ -16,42 +16,15 @@ import GenericLibrary.WebDriverUtility;
 public class DepartmentPage {
 	WebDriverUtility wlib = new WebDriverUtility();
 	ExcelFileUtility elib = new ExcelFileUtility();
-	@FindBy (xpath="//mat-icon[text()='add']")
-	private WebElement AddBtn;
-	@FindBy (xpath="//input[@ng-reflect-name='dept_id']")
-	private WebElement departmentID;
-	@FindBy (xpath="//input[@ng-reflect-name='Description']")
-	private WebElement descriptionTbx;
-	@FindBy (xpath="//input[@ng-reflect-name='Metadata']")
-	private WebElement metadataTbx;
-	//@FindBy(xpath = "//span[@class='mat-button-wrapper' and text()='Save']")
-	//private WebElement saveBtn ;
-	@FindBy(xpath = "//span[.='Save']")
-	private WebElement saveBtn;
-	@FindBy(xpath = "//span[contains(text(),'already')]")
-	private WebElement errorMsg;
-	@FindBy(xpath = "//span[text()='Cancel']")
-	private WebElement cancelBtn;
+	@FindBy(xpath = "//mat-icon[text()='refresh']")
+	private WebElement refreshbtn;
+	@FindBy(xpath = "//mat-paginator[@class='mat-paginator']")
+	private WebElement itemlength;
+	@FindBy(xpath = "//mat-row[@role='row']")
+	private WebElement rowdata;
 	public DepartmentPage(WebDriver driver) {
 		PageFactory.initElements(driver, this);
 	}
-	
-	public WebElement getDepartmentID() {
-		return departmentID;
-	}
-	public WebElement getAddBtn() {
-		return AddBtn;
-	}
-	public WebElement getDescriptionTbx() {
-		return descriptionTbx;
-	}
-	public WebElement getMetadataTbx() {
-		return metadataTbx;
-	}
-	public WebElement getSaveBtn() {
-		return saveBtn;
-	}
-	
 	public WebDriverUtility getWlib() {
 		return wlib;
 	}
@@ -60,55 +33,43 @@ public class DepartmentPage {
 		return elib;
 	}
 
-	public WebElement getErrorMsg() {
-		return errorMsg;
-	}
 
-	public WebElement getCancelBtn() {
-		return cancelBtn;
+	public WebElement getRefreshbtn() {
+		return refreshbtn;
 	}
-
+	public WebElement getItemlength() {
+		return itemlength;
+	}
+	public WebElement getRowdata() {
+		return rowdata;
+	}
 	/** 
-	 * this method is used for Adding  department in the ticket configuration
+	 * this method is used for loading  and ping testing   department table  in the ticket configuration
 	 * @author rafeek
 	 */
-	public void addDepartment(WebDriver driver) throws IOException, Throwable {
-		wlib.waitForPageLoad(driver);
-		int count = elib.getRowCount("Department");
-		for(int i=1;i<=count;i++) {
-			long epochTime = System.currentTimeMillis();
-			//String departmentid = Long.toString(epochTime);
-		String departmentid = elib.readDataFromExcel("Department", i, 0);
-		String description = elib.readDataFromExcel("Department", i, 1);
-		String Metadata = elib.readDataFromExcel("Department", i, 2);
-		AddBtn.click();
-		Thread.sleep(2000);
-		departmentID.sendKeys(departmentid);
-		descriptionTbx.sendKeys(description);
-		metadataTbx.sendKeys(Metadata);
-		try {
-			wlib.waitForElementToBePresent(driver, saveBtn);
-		      saveBtn.click();
-		}
-		catch(Exception e)
-		{ 
-			String duplicateID = errorMsg.getText();
-			wlib.scrollAction(driver,cancelBtn);
-			cancelBtn.click();
-			System.out.println(departmentid+" "+duplicateID);
+	public String loadDepartmentTable(WebDriver driver) throws IOException, Throwable {
+        double startTime = System.currentTimeMillis();
+		//wlib.waitForPageLoad(driver);
+		//refreshbtn.click();
+        wlib.waitForPageLoadTimeOut(driver);
+		//Thread.sleep(1000);
+		wlib.waitForElementToBeClickable(driver, rowdata);
+		// Get the text content of the element
+		String itemLength = itemlength.getText();
+
+		// Extract the numeric value from the text (assuming it is always in the format "x – y of z.")
+		String[] parts = itemLength.split(" ");
+		String iL = parts[parts.length - 1];
+
+		// Convert the numeric value to an integer
+		int totalItem = Integer.parseInt(iL);
+
+		// Verify the actual value is greater than 10 using TestNG assertion
+		Assert.assertTrue(totalItem > 0, "Total items greter than zero");
+		Reporter.log("Total item of department table: "+totalItem,true);
+		double endTime = System.currentTimeMillis();
+		   double departmentloadTimeInSeconds = (endTime - startTime)/1000;
+		return departmentloadTimeInSeconds+" seconds";
 			
 	    }
-		String ActualId = driver.findElement(By.xpath("//mat-cell[@class=\"mat-cell cdk-cell cdk-column-dept_id mat-column-dept_id ng-star-inserted\" and text()='"+" "+""+departmentid+"']")).getText();
-		Assert.assertEquals(departmentid, ActualId);
-		//elib.writeDataIntoExcel("User", i, 12,departmentid);
-		//elib.writeDataIntoExcel("Asset", i, 1, departmentid);
-		//String dept = elib.readDataFromExcel("Asset", i, 1);
-		//System.out.println(dept);
-		
-		
-		
-	}
-	
-	}
-
 }

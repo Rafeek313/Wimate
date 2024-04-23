@@ -42,7 +42,7 @@ public class HomePage {
 	private WebElement vcbtn;
 	@FindBy(xpath = "//a[text()=' Model ']")
 	private WebElement modelbtn;
-	@FindBy(xpath = "(//a[text()=' Role '])[2]")
+	@FindBy(xpath = "//a[contains(text(),'Role')]")
 	private WebElement rolebtn;
 	@FindBy(xpath = "//a[contains(text(),'Mqtt')]")
 	private WebElement mqttbtn;
@@ -67,7 +67,9 @@ public class HomePage {
 	private WebElement reportformbtn;
 	@FindBy(xpath = "//span[contains(text(),'Dashboard')]")
 	private WebElement dbbtn;
-	
+	@FindBy(xpath = "//a[contains(text(),'Form User Permission')]")
+	private WebElement formpermissionbtn;
+	  
 	
 	
 	public HomePage(WebDriver driver) {
@@ -386,6 +388,20 @@ public class HomePage {
 	public void clickonFormButton(WebDriver driver) throws InterruptedException {
 		wlib.maximizeWindow(driver);
 		wlib.waitForElementToBeClickable(reportformbtn);
+		//wlib.specificScrollAction(driver, reportformbtn);
+	}
+	/**
+	 * this method is used for click on Ticket option  in report page and action class used for scroll
+	 * to the specific element
+	 * 
+	 * @param driver
+	 * @throws InterruptedException
+	 * @author rafeek
+	 */
+	public void clickonFormPermissonButton(WebDriver driver) throws InterruptedException {
+		wlib.maximizeWindow(driver);
+		formsbtn.click();
+		wlib.waitForElementToBeClickable(formpermissionbtn);
 		//wlib.specificScrollAction(driver, reportformbtn);
 	}
 }

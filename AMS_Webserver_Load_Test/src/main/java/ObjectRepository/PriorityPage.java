@@ -16,26 +16,15 @@ import GenericLibrary.WebDriverUtility;
 public class PriorityPage {
 	WebDriverUtility wlib = new WebDriverUtility();
 	ExcelFileUtility elib = new ExcelFileUtility();
-	@FindBy(xpath = "//mat-icon[text()='add']")
-	private WebElement AddBtn;
-	@FindBy(xpath = "//input[@ng-reflect-name='priority_id']")
-	private WebElement priorityIdTbx;
-	@FindBy(xpath = "//input[@ng-reflect-name='description']")
-	private WebElement descriptionTbx;
-	@FindBy(xpath = "//input[@ng-reflect-name='metadata']")
-	private WebElement MetaDataTbx;
-	@FindBy(xpath = "//span[text()='Cancel']")
-	private WebElement cancelBtn;
-	@FindBy(xpath = "//span[text()='This PriorityID already exists']")
-	private WebElement errorMsg;
-//	@FindBy(xpath = "(//button[@ng-reflect-disabled='false'])[2]")
-//	private WebElement saveBtn ;
-	@FindBy(xpath = "//span[.='Save']")
-	private WebElement saveBtn;
- public PriorityPage(WebDriver driver)
- {
-	 PageFactory.initElements(driver, this);
- }
+	@FindBy(xpath = "//mat-icon[text()='refresh']")
+	private WebElement refreshbtn;
+	@FindBy(xpath = "//mat-paginator[@class='mat-paginator']")
+	private WebElement itemlength;
+	@FindBy(xpath = "//mat-row[@role='row']")
+	private WebElement rowdata;
+	public PriorityPage(WebDriver driver) {
+		PageFactory.initElements(driver, this);
+	}
 	public WebDriverUtility getWlib() {
 		return wlib;
 	}
@@ -44,58 +33,44 @@ public class PriorityPage {
 		return elib;
 	}
 
-	public WebElement getAddBtn() {
-		return AddBtn;
-	}
 
-	public WebElement getPriorityIdTbx() {
-		return priorityIdTbx;
+	public WebElement getRefreshbtn() {
+		return refreshbtn;
 	}
+	public WebElement getItemlength() {
+		return itemlength;
+	}
+	public WebElement getRowdata() {
+		return rowdata;
+	}
+	/** 
+	 * this method is used for loading  and ping testing   Priority table  in the ticket configuration
+	 * @author rafeek
+	 */
+	public String loadPriorityTable(WebDriver driver) throws IOException, Throwable {
+		double startTime = System.currentTimeMillis();
+		//wlib.waitForPageLoad(driver);
+		//refreshbtn.click();
+        wlib.waitForPageLoadTimeOut(driver);
+		//Thread.sleep(1000);
+		wlib.waitForElementToBeClickable(driver, rowdata);
+		// Get the text content of the element
+		String itemLength = itemlength.getText();
 
-	public WebElement getDescriptionTbx() {
-		return descriptionTbx;
-	}
+		// Extract the numeric value from the text (assuming it is always in the format "x – y of z.")
+		String[] parts = itemLength.split(" ");
+		String iL = parts[parts.length - 1];
 
-	public WebElement getMetaDataTbx() {
-		return MetaDataTbx;
-	}
+		// Convert the numeric value to an integer
+		int totalItem = Integer.parseInt(iL);
 
-	public WebElement getSaveBtn() {
-		return saveBtn;
-	}
-
-	public void addPriority(WebDriver driver) throws IOException, Throwable {
-		wlib.waitForPageLoad(driver);
-		int count = elib.getRowCount("Priority");
-		for (int i = 1; i <= count; i++) {
-			long epochTime = System.currentTimeMillis();
-			String priorityid = Long.toString(epochTime);
-			//String priorityid = elib.readDataFromExcel("Priority", i, 0);
-			String description = elib.readDataFromExcel("Priority", i, 0);
-			String metadata = elib.readDataFromExcel("Priority", i, 1);
-			AddBtn.click();
-			Thread.sleep(1000);
-			priorityIdTbx.sendKeys(priorityid);
-			descriptionTbx.sendKeys(description);
-			MetaDataTbx.sendKeys(metadata);
-			try {
-				saveBtn.click();
-				}
-				catch(Exception e)
-				{ 
-					String duplicateID = errorMsg.getText();
-					wlib.scrollAction(driver,cancelBtn);
-					cancelBtn.click();
-					System.out.println(priorityid+" "+duplicateID);
-					
-			    }
-			String ActualId = driver.findElement(By.xpath(
-					"//mat-cell[@class='mat-cell cdk-cell cdk-column-priority_id mat-column-priority_id ng-star-inserted' and text()='"
-							+ " " + "" + priorityid + "']"))
-					.getText();
-			Assert.assertEquals(priorityid, ActualId);
-			elib.writeDataIntoExcel("Problem", i, 9, priorityid);
-			Reporter.log(priorityid+"priority id added successfully",true);
-		}
-	}
+		// Verify the actual value is greater than 10 using TestNG assertion
+		Assert.assertTrue(totalItem > 0, "Total items greter than zero");
+		Reporter.log("Total item of Priority table: "+totalItem,true);
+		double endTime = System.currentTimeMillis();
+		   double priorityloadTimeInSeconds = (endTime - startTime)/1000;
+		return priorityloadTimeInSeconds+" seconds";
+			
+	    }
+		
 }
