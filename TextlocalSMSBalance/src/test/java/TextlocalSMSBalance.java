@@ -33,7 +33,7 @@ public class TextlocalSMSBalance {
         
     }
 		@Test(priority=0)
-	    public void wwwloginrequest(){
+	    public void wwwloginrequest() throws IOException, InterruptedException{
 			 String parametervalue="";
 		      System.setProperty("parameterFromTestMethod", parametervalue);
 	   	 baseURI="https://e2e.cloudtesla.com";
@@ -67,7 +67,12 @@ public class TextlocalSMSBalance {
 	     	.contentType(ContentType.JSON)
 	     	.when()
 	     	.post("/api_inmemory");
-	         if (response2.getStatusCode() == 200) {
+	         //verifying result key value 
+        	 Object result = response2.path("result"); 
+        	 //converting object to string
+        	 String Actualresult = (String)result;
+
+	         if(Actualresult.equals("Successful")) {
 	             // Extract the value "254" from the JSON response
 	             Object valueToRetrieve = response2.path("data[0].MP.MM[0]");
 	             //convert object to integer
@@ -80,23 +85,20 @@ public class TextlocalSMSBalance {
 
 	             // Print or use the extracted value
 	             System.out.println("Value retrieved: " + valueToRetrieve);
+	 
+	    	         Telegram_Connect tele=new Telegram_Connect();
+	    	 		if (smsbalance < 100) {
+	    	 			
+	    	 	//	tele.lagunatelegramnotification("current SMS Blance is  "+smsbalance);
+	    	 		}  
+	    	   
+	    		
 	         } else {
 	             System.out.println("Failed to fetch data. HTTP Status Code: " + response2.getStatusCode());
 	         }
 	         System.out.println("Final smsbalance value: " + getSmsbalance());
-
-	   
-	   
-	}
-		
-	@Test(priority=1)
-	public void telemessage() throws IOException, InterruptedException {
-		Telegram_Connect tele=new Telegram_Connect();
-		if (smsbalance < 100) {
-			
-		tele.lagunatelegramnotification("current SMS Blance is  "+smsbalance);
-	}
-	}
+	         
 	
 	
-}
+		}
+	         }

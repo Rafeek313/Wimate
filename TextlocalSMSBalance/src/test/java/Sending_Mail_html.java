@@ -98,6 +98,9 @@ public class Sending_Mail_html {
 		String message = "Test-cases Reports";
 		message = "<h1><font color=blue><b>Test Cases Reports<b></font></h1>";
 		message += "<h2><b>Project Name :" + ProjectName + "</b></h2>";
+//		message += "<h2><b>Project Name :" + "This is an automated email, please do not reply.\n"
+//				+ "" + "</b></h2>";
+
 
 		message += "<table cellpadding=\"0\" cellpadding=\"0\" style=\"font-family:'Google Sans',Roboto,RobotoDraft,Helvetica,Arial,sans-serif;box-sizing:border-box;width:100%;margin:0;padding:35px 0\"> <tr><th>Test Name</th><th>Results</th></tr>";
 

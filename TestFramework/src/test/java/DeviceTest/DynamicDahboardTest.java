@@ -15,8 +15,8 @@ public class DynamicDahboardTest extends BaseClass{
 	DDHomePage ddhomepage=new DDHomePage(driver);
 @Test
 public void ddtest() throws InterruptedException {
-	wlib.waitForPageLoad(driver);
-	Thread.sleep(2000);
+//	wlib.waitForPageLoad(driver);
+	Thread.sleep(15000);
 	homepage.clickOnDynamicDashboard();
 	ddhomepage.AddDynamicDashboard();
 //	driver.findElement(By.xpath("//a[@href='/dynamics/dynamic_dynamic']/i[@class='fa fa-dashboard']")).click();

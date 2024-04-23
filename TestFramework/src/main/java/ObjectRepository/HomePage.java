@@ -18,7 +18,8 @@ public class HomePage extends BaseClass{
 	private WebElement Deviceconfiguration;
 	@FindBy(xpath="//h1[@contains(text(),'hours ']")
 	private WebElement officehrs;
-	@FindBy(xpath = "//a[@href='/dynamics/dynamic_dynamic']/i[@class='fa fa-dashboard']")
+	//@FindBy(xpath = "//a[@href='/dynamics/dynamic_dynamic']/i[@class='fa fa-dashboard']")
+	@FindBy(xpath = "	//i[@class='fa fa-dashboard']")
 	private WebElement Dynamicmodule;
 	@FindBy(xpath = "//a[.='Dashboard Configuration ']")
 	private WebElement dahboardconfiguration;
@@ -67,13 +68,17 @@ public WebElement getOfficehrs() {
 	}
 /**
  * this method will be perform clicking on Dynamic Dashboard>dashboard configuration	
+ * @throws InterruptedException 
  */
-	public void clickOnDynamicDashboard() {
+	public void clickOnDynamicDashboard() throws InterruptedException {
+		//Thread.sleep(2000);
+		System.out.println("clicking");
 		Dynamicmodule.click();
+		System.out.println("clicked");
 		dahboardconfiguration.click();
 	}
 	public void clickOnDynamicDashboardpage(WebDriver driver) {
-		wlib.waitForPageLoad(driver);
+		//wlib.waitForPageLoad(driver);
 		Dynamicmodule.click();
 		dydbBtn.click();
 	}
