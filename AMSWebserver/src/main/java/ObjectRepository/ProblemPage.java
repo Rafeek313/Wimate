@@ -260,11 +260,11 @@ public class ProblemPage {
 		wlib.waitForPageLoad(driver);
 		int count = elib.getRowCount("Problem");
 		String[] problems = new String[count];
-		for (int i = 1; i <= count; i++) {
+		for (int i = 17; i <= count; i++) {
 			long epochTime = System.currentTimeMillis();
-			String problemId = Long.toString(epochTime);
+			//String problemId = Long.toString(epochTime);
 			// Reading all field data from excel
-			//problemid = elib.readDataFromExcel("Problem", i, 0);
+			String problemId = elib.readDataFromExcel("Problem", i, 15);
 			String userComment = elib.readDataFromExcel("Problem", i, 0);
 			String commentHeader = elib.readDataFromExcel("Problem", i, 1);
 			String commentPrefix = elib.readDataFromExcel("Problem", i, 2);
@@ -389,8 +389,8 @@ public class ProblemPage {
 			Assert.assertEquals(problemId, ActualId);
 			// all problems will store problems array
 			problems[i-1]=problemId;
-			System.out.println(problemId + " added successfully");
-
+			//System.out.println(problemId + " added successfully");
+            elib.writeDataIntoExcel("Problem", i, 14, "Added");      
 
 		}
 		// this method used to add all problems into the assetmap excel sheet with seperation of comma

@@ -74,7 +74,7 @@ public class WebDriverUtility {
 	 * @param driver
 	 */
 	public static void waitForElementToBePresent(WebDriver driver, WebElement element) {
-		new WebDriverWait(driver, Duration.ofSeconds(10)).ignoring(StaleElementReferenceException.class )
+		new WebDriverWait(driver, Duration.ofSeconds(20)).ignoring(StaleElementReferenceException.class )
 		.until(ExpectedConditions.elementToBeClickable(element));
 
 
@@ -119,7 +119,7 @@ public class WebDriverUtility {
 	 */
 	public void waitForElementToBeClickable(WebElement element) {
 		int count = 0;
-		while (count < 10) {
+		while (count < 15) {
 			try {
 				element.click();
 				break;

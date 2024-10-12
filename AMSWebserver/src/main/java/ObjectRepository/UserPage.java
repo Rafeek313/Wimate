@@ -2,6 +2,7 @@ package ObjectRepository;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
@@ -9,7 +10,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.Reporter;
-
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import GenericLibrary.ExcelFileUtility;
 import GenericLibrary.WebDriverUtility;
 
@@ -68,7 +70,12 @@ public class UserPage {
 	private WebElement errorMsg;
 	@FindBy(xpath = "//mat-icon[.='refresh']")
 	private WebElement refreshBtn;
-
+	@FindBy(xpath = "//input[contains(@placeholder,'Search')]")
+	private WebElement searchBtn;
+	@FindBy(xpath = "//app-feather-icons[@ng-reflect-icon='edit']")
+	private WebElement editBtn;
+	@FindBy(xpath = "	//button[contains(@ng-reflect-type,'submit')]")
+	private WebElement updateBtn;
 	@FindBy(xpath = "//span[text()='Save']")
 	//@FindBy(xpath = "(//button[@ng-reflect-disabled='false'])[2]")
 	private WebElement saveBtn ;
@@ -80,7 +87,8 @@ public class UserPage {
 	private WebElement visibleOption;
 	@FindAll({@FindBy(xpath = "//span[text()=' Invisible ']"),@FindBy(xpath="//mat-option[@ng-reflect-value='false']") })
 	private WebElement invisibleOption;
-
+	@FindBy(xpath = "//div[@class='mat-paginator-range-label']")
+	private WebElement itemcount;
 	public UserPage(WebDriver driver) {
 		PageFactory.initElements(driver, this);
 	}
@@ -237,7 +245,7 @@ public class UserPage {
 			String escalationSMS = elib.readDataFromExcel("User", i, 7);
 			String phoneNo = elib.readDataFromExcel("User", i, 8);
 			String mobilePrivacy = elib.readDataFromExcel("User", i, 9);
-			String metadata = elib.readDataFromExcel("User", i, 10);
+			//String metadata = elib.readDataFromExcel("User", i, 10);
 			String username = elib.readDataFromExcel("User", i, 11);
 			String password = elib.readDataFromExcel("User", i, 12);
 			String departmentID = elib.readDataFromExcel("User", i, 13);
@@ -319,7 +327,7 @@ public class UserPage {
 				invisibleOption.click();
 			}
 			// Adding value in to the metadata  text field
-			MetaDataTbx.sendKeys(metadata);
+			//MetaDataTbx.sendKeys(metadata);
 			// Adding value in to the metadata  text field
 			usernameTbx.sendKeys(username);
 			// Adding value in to the metadata  text field
@@ -404,9 +412,11 @@ public class UserPage {
 								+ " " + "" + userId + "']"))
 						.getText();
 				Assert.assertEquals(userId, ActualId);
+				System.out.println("USER ID:"+userId +"added successfully");
 			}
 			catch(Exception e)
-			{   refreshBtn.click();
+			{   
+				refreshBtn.click();
 			wlib.waitForPageLoad(driver);
 			String ActualId=driver.findElement(By.xpath("//div[text()='"+emailID+"']")).getText();
 			Assert.assertEquals(emailID, ActualId);
@@ -427,6 +437,74 @@ public class UserPage {
 
 
 	}
+	public void updateuser(WebDriver driver) throws Throwable {
+        wlib.waitForPageLoadTimeOut(driver);
+        wlib.waitForPageLoad(driver);
+        int rowcount = elib.getRowCount("User");
+        System.out.println(rowcount);
+        String[] users = new String[rowcount];
+        int fprowcount = elib.getRowCount("formTypeData");
+        for (int i = 1; i <= rowcount; i++) {
+            Thread.sleep(1000);
+            wlib.fullscreenWindow(driver);
+            wlib.waitForPageLoadTimeOut(driver);
+            wlib.waitForPageLoad(driver);
+            String userId = elib.readDataFromExcel("User", i, 0);
+            String description = elib.readDataFromExcel("User", i, 3);
+            String emailID = elib.readDataFromExcel("User", i, 4);
 
+            Thread.sleep(3000);
+           // searchBtn.sendKeys(userId);
+            String usercount = itemcount.getText().trim();
+            
+            // Extract the last number from the usercount string
+            String[] parts = usercount.split(" ");
+            String lastNumberStr = parts[parts.length - 1];
+            int lastNumber = Integer.parseInt(lastNumberStr);
+            
+            // Determine the search criteria based on the last number
+            if (lastNumber > 1) {
+            	searchBtn.clear();
+                searchBtn.sendKeys(emailID);
+            } else {
+                searchBtn.sendKeys(userId);
+            }
 
+            Thread.sleep(1000);
+            wlib.waitForElementToBeClickable(editBtn);
+            Thread.sleep(2000);
+            wlib.waitForElementToBePresent(driver, descriptionTbx);
+            descriptionTbx.clear();
+            descriptionTbx.sendKeys(description);
+            try {
+                wlib.waitForElementToBeClickable(updateBtn);
+                //updateBtn.click();
+                Thread.sleep(1000);
+                wlib.waitForElementToBePresent(driver, searchBtn);
+                searchBtn.clear();
+                Thread.sleep(3000);
+
+                // Second search based on user count
+                if (lastNumber > 1) {
+                	searchBtn.clear();
+                    searchBtn.sendKeys(emailID);
+                } else {
+                    searchBtn.sendKeys(userId);
+                }
+
+                Thread.sleep(2000);
+                wlib.waitForElementToBePresent(driver, editBtn);
+                String dynamicXpath = "//div[contains(text(),'" + description + "')]";
+                String actualDesc = driver.findElement(By.xpath(dynamicXpath)).getText();
+                Assert.assertEquals(description, actualDesc);
+                System.err.println(userId);
+                Thread.sleep(3000);
+                searchBtn.clear();
+            } catch (UnhandledAlertException e) {
+                wlib.fullscreenWindow(driver);
+                System.out.println(userId + " user not confirmed");
+                searchBtn.clear();
+            }
+        }
+    }
 }

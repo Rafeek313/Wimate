@@ -90,8 +90,8 @@ public class AssetMapPage {
 		int count = elib.getRowCount("AssetMap");
 		for (int i = 1; i <= count; i++) {
 			long epochTime = System.currentTimeMillis();
-			String assettypeid = Long.toString(epochTime);
-			//String assettypeid = elib.readDataFromExcel("AssetMap", i, 0);
+			//String assettypeid = Long.toString(epochTime);
+			String assettypeid = elib.readDataFromExcel("AssetMap", i, 3);
 			String description = elib.readDataFromExcel("AssetMap", i, 0);
 			String metadata = elib.readDataFromExcel("AssetMap", i, 2);
 			Thread.sleep(1000);
@@ -101,7 +101,7 @@ public class AssetMapPage {
 			// click on problem id dropdown
 			problemsDrpDwn.click();
 			// dynamic xpath for problem id web element
-			List<String> problemids = elib.readCommaSeparatedColumn(14, 1);
+			List<String> problemids = elib.readCommaSeparatedColumn(15, 1,i);
 			System.out.println(problemids.toString());
 			for (String problemid : problemids)
 			{
@@ -138,7 +138,7 @@ public class AssetMapPage {
 					"//mat-cell[@class='mat-cell cdk-cell cdk-column-assetmap_id mat-column-assetmap_id ng-star-inserted' and text()='"
 							+ " " + "" + assettypeid + "']"))
 					.getText();
-
+                   //String Actual = ActualId.trim();
 			Assert.assertEquals(assettypeid, ActualId);
 			
 			elib.writeDataIntoExcel("Asset", i, 0, ActualId);

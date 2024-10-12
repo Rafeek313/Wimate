@@ -2,15 +2,20 @@ package FormTest;
 
 import java.awt.AWTException;
 import java.io.IOException;
+import java.lang.reflect.Method;
 
 import org.testng.Reporter;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import GenericLibrary.BaseClass;
 import GenericLibrary.ExcelFileUtility;
 import GenericLibrary.PropertyFileUtility;
+import GenericLibrary.SkipLogin;
 import ObjectRepository.AssetMapPage;
 import ObjectRepository.AssetPage;
+//import ObjectRepository.CustomerMaster;
+import ObjectRepository.Equipmentmaster;
 import ObjectRepository.DepartmentPage;
 import ObjectRepository.FormParameterPage;
 import ObjectRepository.FormTypePage;
@@ -23,6 +28,7 @@ import ObjectRepository.ModelPage;
 import ObjectRepository.MqttPage;
 import ObjectRepository.PriorityPage;
 import ObjectRepository.ProblemPage;
+//import ObjectRepository.RegisterComplaints;
 import ObjectRepository.RolePage;
 import ObjectRepository.SubDepartmentPage;
 import ObjectRepository.UserPage;
@@ -47,7 +53,16 @@ public class FormTest extends BaseClass {
 	 VendorCompanyPage vcPage;
 	 RolePage rolePage;
 	 MqttPage mqttPage;
+	 Equipmentmaster empage;
+//	 CustomerMaster cmpage;
+//	 RegisterComplaints rcpage;
 	ExcelFileUtility elib = new ExcelFileUtility();
+	public void setUp(Method method) throws IOException {
+        // Check if the method is annotated with @SkipLogin
+        if (method.getAnnotation(SkipLogin.class) == null) {
+            login(); // Call login from the BaseClass
+        }
+    }
 	/**
 	 * this method used for creating MQTT Broker in AMSv2 app
 	 * 
@@ -225,7 +240,7 @@ public class FormTest extends BaseClass {
 	 * this method is used for adding  for ticket configuration 
 	 * @author rafeek
 	 */
-	@Test(priority = 10,enabled=false)
+	@Test(priority = 10,enabled=true)
 	public void addProblemBtn() throws IOException, Throwable {
 		wlib.waitForPageLoad(driver);
 		homePage = new HomePage(driver);
@@ -233,14 +248,14 @@ public class FormTest extends BaseClass {
 		homePage.clickonProblemButton(driver);
 		problemPage= new ProblemPage(driver);
 		problemPage.addProblem(driver);
-		Reporter.log("asset map added successfully",true);
+		Reporter.log("problems added successfully",true);
 
 	}
 	/**
 	 * this method is used for adding asset map for ticket configuration 
 	 * @author rafeek
 	 */
-	@Test(priority = 11,enabled=false)
+	@Test(priority = 11,enabled=true)
 	public void addAssetMap() throws IOException, Throwable {
 		wlib.waitForPageLoad(driver);
 		homePage = new HomePage(driver);
@@ -267,6 +282,17 @@ public class FormTest extends BaseClass {
 		Reporter.log(" new user added successfully",true);
 
 	}
+	@Test(priority =7)
+	public void updateUser() throws IOException, Throwable {
+		wlib.waitForPageLoad(driver);
+		homePage = new HomePage(driver);
+		homePage.clickonConfigButton(driver);
+		homePage.clickonUserButton(driver);
+		userPage = new UserPage(driver);
+		userPage.updateuser(driver);
+		Reporter.log("  user updated  successfully",true);
+
+	}
 	/**
 	 * this method is used for adding asset for ticket configuration 
 	 * @author rafeek
@@ -286,7 +312,7 @@ public class FormTest extends BaseClass {
 	 * this method is used for adding asset for ticket configuration 
 	 * @author rafeek
 	 */
-	@Test(priority = 13, enabled=false)
+	@Test(priority = 13, enabled=true)
 	public void addAsset() throws IOException, Throwable {
 		wlib.waitForPageLoad(driver);
 		homePage = new HomePage(driver);
@@ -297,4 +323,43 @@ public class FormTest extends BaseClass {
 		Reporter.log(" new user added successfully",true);
 
 	}
+	/**
+	 * this method is used for delete Equipment master for climaveneta 
+	 * @author rafeek
+	 */
+	@Test(priority = 13, enabled=true)
+	public void deleteEMitem() throws IOException, Throwable {
+		empage = new Equipmentmaster(driver);
+		empage.deleteEMitem(driver);
+		Reporter.log(" equipment deleted successfully",true);
+
+	}
+	/**
+	 * this method is used for verifying CID for ticket configuration 
+	 * @author rafeek
+	 */
+//	@Test(priority = 13, enabled=true)
+//	public void verifyCID() throws IOException, Throwable {
+//		cmpage = new CustomerMaster(driver);
+//		cmpage.verifyCID(driver);
+//		Reporter.log(" equipment deleted successfully",true);
+//
+//	}
+//	/**
+//	 * this method is used for finding duplicate id   IN Customer master new table 
+//	 * @author rafeek
+//	 */
+//	@Test(priority = 13, enabled=true)
+//	public void duplicatecid() throws IOException, Throwable {
+//		cmpage = new CustomerMaster(driver);
+//		cmpage.duplicateID(driver);
+//		Reporter.log(" duplicate cid fetched successfully",true);
+//
+//	}
+//	@Test
+//    @SkipLogin
+//	public void raisedcomplaint() throws IOException, Throwable {
+//		rcpage=new RegisterComplaints(driver);
+//		rcpage.raisedcomplaint(driver,"TEST_RFK","TEST","rafeek",9483460652l,"rafeek@wimate.in","banglore","Others","issue");
+//	}
 }

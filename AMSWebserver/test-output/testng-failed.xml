@@ -3,15 +3,12 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="FormTest.FormTest">
+      <class name="FormTest.GeocodeAddress">
         <methods>
-          <include name="logout"/>
+          <include name="geocodeAddresses"/>
           <include name="launchBrowser"/>
-          <include name="login"/>
-          <include name="closebrowser"/>
-          <include name="addUser"/>
         </methods>
-      </class> <!-- FormTest.FormTest -->
+      </class> <!-- FormTest.GeocodeAddress -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

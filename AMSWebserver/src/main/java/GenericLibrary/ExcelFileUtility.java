@@ -53,14 +53,31 @@ public class ExcelFileUtility {
 	 * @throws Throwable
 	 */
 	public void writeDataIntoExcel(String sheetname, int rownum, int cellnum, String value) throws Throwable {
+		//FileInputStream fis = new FileInputStream(IpathConstants.ExcelPath);
+		//Workbook wb = WorkbookFactory.create(fis);
+		//Sheet sh = wb.getSheet(sheetname);
+		//Row ro = sh.getRow(rownum);
+		//Cell cel = ro.createCell(cellnum);
+		//cel.setCellValue(value);
+		//FileOutputStream fos = new FileOutputStream(IpathConstants.ExcelPath);
+		//wb.write(fos);
 		FileInputStream fis = new FileInputStream(IpathConstants.ExcelPath);
-		Workbook wb = WorkbookFactory.create(fis);
-		Sheet sh = wb.getSheet(sheetname);
-		Row ro = sh.getRow(rownum);
-		Cell cel = ro.createCell(cellnum);
-		cel.setCellValue(value);
-		FileOutputStream fos = new FileOutputStream(IpathConstants.ExcelPath);
-		wb.write(fos);
+	    Workbook wb = WorkbookFactory.create(fis);
+	    Sheet sh = wb.getSheet(sheetname);
+	    if (sh == null) {
+	        sh = wb.createSheet(sheetname);
+	    }
+	    Row ro = sh.getRow(rownum);
+	    if (ro == null) {
+	        ro = sh.createRow(rownum);
+	    }
+	    Cell cel = ro.createCell(cellnum);
+	    cel.setCellValue(value);
+
+	    FileOutputStream fos = new FileOutputStream(IpathConstants.ExcelPath);
+	    wb.write(fos);
+	    fos.close();
+	    wb.close();
 
 	}
 
@@ -117,34 +134,32 @@ public class ExcelFileUtility {
 	 * @author rafeek
 	 * @return
 	 */
-	  public static List<String> readCommaSeparatedColumn( int sheetIndex, int columnIndex) {
-	        List<String> data = new ArrayList<>();
+	public static List<String> readCommaSeparatedColumn(int sheetIndex, int columnIndex, int rowIndex) {
+        List<String> data = new ArrayList<>();
 
-	        try (FileInputStream fis = new FileInputStream(IpathConstants.ExcelPath);
-	             Workbook workbook = new XSSFWorkbook(fis)) {
+        try (FileInputStream fis = new FileInputStream(IpathConstants.ExcelPath);
+             Workbook workbook = new XSSFWorkbook(fis)) {
 
-	            Sheet sheet = workbook.getSheetAt(sheetIndex);
-	            boolean isFirstRow = true;
-	            for (Row row : sheet) {
-	            	if (isFirstRow) {
-	                    isFirstRow = false;
-	                    continue; // Skip the first row
-	                }
-	                Cell cell = row.getCell(columnIndex);
-	                if (cell != null) {
-	                    String cellValue = cell.getStringCellValue();
-	                    String[] values = cellValue.split(",");
-	                    for (String value : values) {
-	                        data.add(value.trim());
-	                    }
-	                }
-	            }
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	        }
+            Sheet sheet = workbook.getSheetAt(sheetIndex);
+            Row row = sheet.getRow(rowIndex);
 
-	        return data;
-	    }
+            if (row != null) {
+                Cell cell = row.getCell(columnIndex);
+                if (cell != null) {
+                    String cellValue = cell.getStringCellValue();
+                    String[] values = cellValue.split(",");
+                    for (String value : values) {
+                        data.add(value.trim());
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return data;
+    }
+
 	  /**
 		 * this method will read data from the excel sheet and extract value from the column with comma seperation based on row
 		 * @param sheetIndex

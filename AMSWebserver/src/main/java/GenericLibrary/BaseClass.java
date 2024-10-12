@@ -11,6 +11,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
 
 import ObjectRepository.HomePage;
 import ObjectRepository.LoginPage;
@@ -58,13 +59,14 @@ public class BaseClass {
 		Reporter.log("launching browser successful=====", true);
 	}
 
-	@BeforeMethod
+	//@BeforeMethod
 	/**
 	 * this method is used for loginto the application
 	 * @author rafeek
 	 * @throws IOException
 	 */
 	public void login() throws IOException {
+		
 		wlib.waitForPageLoad(driver);
 		PropertyFileUtility pobj = new PropertyFileUtility();
 		String USERNAME = pobj.readDataFromPropertyFile("username");
@@ -72,30 +74,31 @@ public class BaseClass {
 		loginpage = new LoginPage(driver);
 		loginpage.login(USERNAME, PASSWORD);
 		Reporter.log("login successful", true);
+		
 
 	}
 
-	@AfterMethod
-	/**
-	 * this method is used for logout the application
-	 * @author rafeek
-	 * @throws InterruptedException
-	 */
-	public void logout() throws InterruptedException {
-		homePage = new HomePage(driver);
-		homePage.logout();
-		Reporter.log("logout successful", true);
-	}
+//	@AfterMethod
+//	/**
+//	 * this method is used for logout the application
+//	 * @author rafeek
+//	 * @throws InterruptedException
+//	 */
+//	public void logout() throws InterruptedException {
+//		homePage = new HomePage(driver);
+//		homePage.logout();
+//		Reporter.log("logout successful", true);
+//	}
 
-	@AfterClass
-/**
- * this method will close the browser
- * @author rafeek
- * @throws InterruptedException
- */
-	public void closebrowser() throws InterruptedException {
-		sdriver.quit();
-		Reporter.log("closed browser successfully", true);
-	}
+//	@AfterClass
+///**
+// * this method will close the browser
+// * @author rafeek
+// * @throws InterruptedException
+// */
+//	public void closebrowser() throws InterruptedException {
+//		sdriver.quit();
+//		Reporter.log("closed browser successfully", true);
+//	}
 
 }

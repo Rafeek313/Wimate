@@ -205,7 +205,7 @@ public class FormTypePage {
 			//wlib.scrollAction(driver, otherDrpdwn);
 			typeParamIdDrpdwn.click();
 			//this 
-			List<String> typeParamIds = elib.readCommaSeparatedColumn(6, 7);
+			List<String> typeParamIds = elib.readCommaSeparatedColumn(6, 7,i);
 			System.out.println(typeParamIds.toString());
 			for (String typeParamId : typeParamIds)
 			{

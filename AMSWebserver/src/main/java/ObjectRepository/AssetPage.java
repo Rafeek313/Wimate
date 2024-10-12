@@ -183,13 +183,13 @@ public class AssetPage {
 
 		for (int i = 1; i <= count; i++) {
 			long epochTime = System.currentTimeMillis();
-			String assetID = Long.toString(epochTime);
+			//String assetID = Long.toString(epochTime);
 
 			// Reading all field data from excel
 			//String assetID = elib.readDataFromExcel("Asset", i, 0);
 			//String tagID = elib.readDataFromExcel("Asset", i, 0);
 			String assetTypeID = elib.readDataFromExcel("Asset", i, 0);
-			String tagID = Long.toString(epochTime);
+			//String tagID = Long.toString(epochTime);
 			String departmentID = elib.readDataFromExcel("Asset", i, 1);
 			String subDepartmentID = elib.readDataFromExcel("Asset", i, 2);
 			String amcExpiryDate = elib.readDataFromExcel("Asset", i, 3);
@@ -207,6 +207,8 @@ public class AssetPage {
 			String group = elib.readDataFromExcel("Asset", i, 15);
 			String technicianID = elib.readDataFromExcel("Asset", i, 16);
 			String userNotifyID = elib.readDataFromExcel("Asset", i, 17);
+			String tagID = elib.readDataFromExcel("Asset", i, 18);
+			String assetID = elib.readDataFromExcel("Asset", i, 19);
 			Thread.sleep(1000);
 			// click on Add new button
 			AddBtn.click();
@@ -217,8 +219,10 @@ public class AssetPage {
 			tagIDTbx.sendKeys(tagID);
 			Thread.sleep(1000);
 			System.out.println(assetTypeID);
+			Thread.sleep(500);
 			// click on asset type id dropdown
 			assetTypeIDDrpDwn.click();
+			System.out.println("dropdown clicked successfully");
 			Thread.sleep(500);
 			// dynamic xpath for asset type id webelement
 			WebElement assetTypeIDWe = driver
